@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.imie.gamerpg.entity;
+package com.imie.gamerpg.entity.personnage;
 
 import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.armure.Armure;
