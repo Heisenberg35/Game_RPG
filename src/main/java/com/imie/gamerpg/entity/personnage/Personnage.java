@@ -24,7 +24,7 @@ public abstract class Personnage {
 	 * @return the nom
 	 */
 	public String getNom() {
-		return nom;
+		return nom.toUpperCase();
 	}
 
 	/**
@@ -103,7 +103,7 @@ public abstract class Personnage {
 	public void setArmure(Armure armure) {
 		this.armure = armure;
 	}
-	
+
 	/**
 	 * @param nom
 	 * @param ptsVie
@@ -123,7 +123,7 @@ public abstract class Personnage {
 
 	public boolean isAlive() {
 		boolean isAlive = true;
-		
+
 		if (this.getPtsVie() < 0) {
 			isAlive = false;
 		}
