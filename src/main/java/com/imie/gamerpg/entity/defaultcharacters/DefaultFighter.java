@@ -31,6 +31,8 @@ public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.Cl
 			to_return += "Magique";
 		else if (this instanceof Barbare)
 			to_return += "Physique";
+		else if (this instanceof DefaultFighter)
+			to_return += "Physique||Magique||Mixte";
 		return to_return;
 	}
 
@@ -43,6 +45,8 @@ public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.Cl
 			to_return += "Magique";
 		else if (this instanceof Barbare)
 			to_return += "Physique";
+		else if (this instanceof DefaultFighter)
+			to_return += "Physique||Magique||Mixte";
 		return to_return;
 	}
 
@@ -60,6 +64,8 @@ public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.Cl
 			equipable = true;
 		else if (this instanceof Barbare && arme instanceof ArmePhysique)
 			equipable = true;
+		else if (this instanceof DefaultFighter)
+			equipable = true;
 		return equipable;
 	}
 
@@ -71,6 +77,8 @@ public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.Cl
 		else if (this instanceof Magicien && armure instanceof ArmureMagique)
 			equipable = true;
 		else if (this instanceof Barbare && armure instanceof ArmurePhysique)
+			equipable = true;
+		else if (this instanceof DefaultFighter)
 			equipable = true;
 		return equipable;
 	}
