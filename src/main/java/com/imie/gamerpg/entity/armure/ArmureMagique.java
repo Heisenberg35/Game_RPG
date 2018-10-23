@@ -9,9 +9,7 @@ package com.imie.gamerpg.entity.armure;
  */
 public class ArmureMagique extends Armure {
 
-	public ArmureMagique(String nom, int ptsArmure) {
-		super(nom, ptsArmure);
-		// TODO Auto-generated constructor stub
+	public ArmureMagique(String nom, int ptsArmureMagique, int ptsArmurePhysique) {
+		super(nom, ptsArmureMagique, ptsArmurePhysique);
 	}
-
 }

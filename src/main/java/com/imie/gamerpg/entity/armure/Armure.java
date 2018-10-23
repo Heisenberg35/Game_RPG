@@ -10,7 +10,8 @@ package com.imie.gamerpg.entity.armure;
 public abstract class Armure {
 
 	private String nom;
-	private int ptsArmure;
+	private int ptsArmureMagique;
+	private int ptsArmurePhysique;
 
 	/**
 	 * @return the nom
@@ -27,27 +28,42 @@ public abstract class Armure {
 	}
 
 	/**
-	 * @return the ptsArmure
+	 * @return the ptsArmureMagique
 	 */
-	public int getPtsArmure() {
-		return ptsArmure;
+	public int getPtsArmureMagique() {
+		return ptsArmureMagique;
 	}
 
 	/**
-	 * @param ptsArmure the ptsArmure to set
+	 * @param ptsArmureMagique the ptsArmureMagique to set
 	 */
-	public void setPtsArmure(int ptsArmure) {
-		this.ptsArmure = ptsArmure;
+	public void setPtsArmureMagique(int ptsArmureMagique) {
+		this.ptsArmureMagique = ptsArmureMagique;
+	}
+
+	/**
+	 * @return the ptsArmurePhysique
+	 */
+	public int getPtsArmurePhysique() {
+		return ptsArmurePhysique;
+	}
+
+	/**
+	 * @param ptsArmurePhysique the ptsArmurePhysique to set
+	 */
+	public void setPtsArmurePhysique(int ptsArmurePhysique) {
+		this.ptsArmurePhysique = ptsArmurePhysique;
 	}
 
 	/**
 	 * @param nom
-	 * @param ptsArmure
+	 * @param ptsArmureMagique
+	 * @param ptsArmurePhysique
 	 */
-	public Armure(String nom, int ptsArmure) {
+	public Armure(String nom, int ptsArmureMagique, int ptsArmurePhysique) {
 		super();
 		this.nom = nom;
-		this.ptsArmure = ptsArmure;
+		this.ptsArmureMagique = ptsArmureMagique;
+		this.ptsArmurePhysique = ptsArmurePhysique;
 	}
-
 }
