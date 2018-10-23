@@ -26,6 +26,12 @@ public class Manager {
 		this.monstres = new ArrayList<Monstre>();
 	}
 	
+	public void init() {
+		
+	}
 	
+	public void game() {
+		
+	}
 
 }
