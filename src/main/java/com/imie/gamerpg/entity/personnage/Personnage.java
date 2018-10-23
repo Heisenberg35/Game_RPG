@@ -103,7 +103,7 @@ public abstract class Personnage {
 	public void setArmure(Armure armure) {
 		this.armure = armure;
 	}
-
+	
 	/**
 	 * @param nom
 	 * @param ptsVie
@@ -121,4 +121,12 @@ public abstract class Personnage {
 		this.classe = classe;
 	}
 
+	public boolean isAlive() {
+		boolean isAlive = true;
+		
+		if (this.getPtsVie() < 0) {
+			isAlive = false;
+		}
+		return isAlive;
+	}
 }
