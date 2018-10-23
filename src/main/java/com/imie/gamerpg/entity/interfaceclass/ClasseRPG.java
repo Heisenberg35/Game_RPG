@@ -1,4 +1,4 @@
-package com.imie.gamerpg.interfaceclass;
+package com.imie.gamerpg.entity.interfaceclass;
 
 import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.armure.Armure;

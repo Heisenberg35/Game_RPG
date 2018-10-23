@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.imie.gamerpg.defaultcharacters;
+package com.imie.gamerpg.entity.defaultcharacters;
 
-import com.imie.gamerpg.interfaceclass.Paladin;
+import com.imie.gamerpg.entity.interfaceclass.Paladin;
 
 /**
  * @author Romain

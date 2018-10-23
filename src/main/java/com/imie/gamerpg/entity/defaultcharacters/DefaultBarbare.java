@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.imie.gamerpg.defaultcharacters;
+package com.imie.gamerpg.entity.defaultcharacters;
 
-import com.imie.gamerpg.interfaceclass.Magicien;
+import com.imie.gamerpg.entity.interfaceclass.Magicien;
 
 /**
  * @author Romain
