@@ -28,6 +28,7 @@ public class DefaultFighter implements ClasseRPG {
 	public String getArmorRestriction() {
 		String to_return = new String();
 		
+		to_return = "Le personnage ne peut équiper qu'une armure ";
 		if (this instanceof Paladin)
 			to_return += "Mixte||Magique";
 		else if (this instanceof Magicien)
@@ -36,12 +37,14 @@ public class DefaultFighter implements ClasseRPG {
 			to_return += "Physique";
 		else if (this instanceof DefaultFighter)
 			to_return += "Physique||Magique||Mixte";
+		to_return += ".";
 		return to_return;
 	}
 
 	public String getWeaponRestriction() {
 		String to_return = new String();
 		
+		to_return = "Le personnage ne peut équiper qu'une arme ";
 		if (this instanceof Paladin)
 			to_return += "Mixte||Magique";
 		else if (this instanceof Magicien)
@@ -50,6 +53,7 @@ public class DefaultFighter implements ClasseRPG {
 			to_return += "Physique";
 		else if (this instanceof DefaultFighter)
 			to_return += "Physique||Magique||Mixte";
+		to_return += ".";
 		return to_return;
 	}
 
@@ -57,7 +61,7 @@ public class DefaultFighter implements ClasseRPG {
 		int degats = 0;
 		int temp = 0;
 		
-		 temp = me.getArme().getPtsAttaque() - defender.getArmure().getPtsArmure();
+		 temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
 		 if (temp  > 0)
 			 degats += temp;
 		 temp = me.getArme().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
@@ -92,6 +96,10 @@ public class DefaultFighter implements ClasseRPG {
 		else if (this instanceof DefaultFighter)
 			equipable = true;
 		return equipable;
+	}
+	
+	public DefaultFighter() {
+		;
 	}
 	
 	public DefaultFighter(Personnage character) {
