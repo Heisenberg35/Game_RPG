@@ -12,6 +12,7 @@ import com.imie.gamerpg.entity.armure.ArmureMagique;
 import com.imie.gamerpg.entity.armure.ArmureMixte;
 import com.imie.gamerpg.entity.armure.ArmurePhysique;
 import com.imie.gamerpg.entity.interfaceclass.Barbare;
+import com.imie.gamerpg.entity.interfaceclass.ClasseRPG;
 import com.imie.gamerpg.entity.interfaceclass.Magicien;
 import com.imie.gamerpg.entity.interfaceclass.Paladin;
 import com.imie.gamerpg.entity.personnage.Personnage;
@@ -20,8 +21,10 @@ import com.imie.gamerpg.entity.personnage.Personnage;
  * @author Romain
  *
  */
-public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.ClasseRPG {
+public class DefaultFighter implements ClasseRPG {
 
+	Personnage me;
+	
 	public String getArmorRestriction() {
 		String to_return = new String();
 		
@@ -51,8 +54,16 @@ public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.Cl
 	}
 
 	public void fight(Personnage defender) {
-		// TODO Auto-generated method stub
+		int degats = 0;
+		int temp = 0;
 		
+		 temp = me.getArme().getPtsAttaque() - defender.getArmure().getPtsArmure();
+		 if (temp  > 0)
+			 degats += temp;
+		 temp = me.getArme().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
+		 if (temp > 0)
+			 degats += temp;
+		 defender.setPtsVie(defender.getPtsVie() - degats);
 	}
 
 	public boolean isEquipable(Arme arme) {
@@ -81,6 +92,10 @@ public class DefaultFighter implements com.imie.gamerpg.entity.interfaceclass.Cl
 		else if (this instanceof DefaultFighter)
 			equipable = true;
 		return equipable;
+	}
+	
+	public DefaultFighter(Personnage character) {
+		this.me = character;
 	}
 
 }
