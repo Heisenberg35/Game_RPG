@@ -5,25 +5,40 @@ package com.imie.gamerpg.entity.personnage;
 
 import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.armure.Armure;
-import com.imie.gamerpg.interfaceclass.ClasseRPG;
+import com.imie.gamerpg.entity.interfaceclass.ClasseRPG;
 
 /**
  * @author Fabrice
  *
  */
-public abstract class Personnage implements ClasseRPG {
+public abstract class Personnage {
 
 	private String nom;
 	private int ptsVie;
 	private int ptsAction;
 	private Arme arme;
 	private Armure armure;
+	private ClasseRPG classe;
 
 	/**
 	 * @return the nom
 	 */
 	public String getNom() {
 		return nom;
+	}
+
+	/**
+	 * @return the classe
+	 */
+	public ClasseRPG getClasse() {
+		return classe;
+	}
+
+	/**
+	 * @param classe the classe to set
+	 */
+	public void setClasse(ClasseRPG classe) {
+		this.classe = classe;
 	}
 
 	/**
@@ -96,13 +111,14 @@ public abstract class Personnage implements ClasseRPG {
 	 * @param arme
 	 * @param armure
 	 */
-	public Personnage(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure) {
+	public Personnage(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure, ClasseRPG classe) {
 		super();
 		this.nom = nom;
 		this.ptsVie = ptsVie;
 		this.ptsAction = ptsAction;
 		this.arme = arme;
 		this.armure = armure;
+		this.classe = classe;
 	}
 
 }
