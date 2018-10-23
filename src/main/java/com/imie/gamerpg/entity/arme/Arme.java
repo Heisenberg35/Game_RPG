@@ -10,44 +10,69 @@ package com.imie.gamerpg.entity.arme;
 public abstract class Arme {
 
 	private String nom;
-	private int ptsAttaque;
-
+	private int ptsAttaquePhysique;
+	private int ptsAttaqueMagique;
+	private int ptsAction;
+	
+	/**
+	 * @return the ptsAction
+	 */
+	public int getPtsAction() {
+		return ptsAction;
+	}
+	/**
+	 * @param ptsAction the ptsAction to set
+	 */
+	public void setPtsAction(int ptsAction) {
+		this.ptsAction = ptsAction;
+	}
 	/**
 	 * @return the nom
 	 */
 	public String getNom() {
 		return nom;
 	}
-
 	/**
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 	/**
-	 * @return the ptsAttaque
+	 * @return the ptsAttaquePhysique
 	 */
-	public int getPtsAttaque() {
-		return ptsAttaque;
+	public int getPtsAttaquePhysique() {
+		return ptsAttaquePhysique;
 	}
-
 	/**
-	 * @param ptsAttaque the ptsAttaque to set
+	 * @param ptsAttaquePhysique the ptsAttaquePhysique to set
 	 */
-	public void setPtsAttaque(int ptsAttaque) {
-		this.ptsAttaque = ptsAttaque;
+	public void setPtsAttaquePhysique(int ptsAttaquePhysique) {
+		this.ptsAttaquePhysique = ptsAttaquePhysique;
 	}
-
+	/**
+	 * @return the ptsAttaqueMagique
+	 */
+	public int getPtsAttaqueMagique() {
+		return ptsAttaqueMagique;
+	}
+	/**
+	 * @param ptsAttaqueMagique the ptsAttaqueMagique to set
+	 */
+	public void setPtsAttaqueMagique(int ptsAttaqueMagique) {
+		this.ptsAttaqueMagique = ptsAttaqueMagique;
+	}
 	/**
 	 * @param nom
-	 * @param ptsAttaque
+	 * @param ptsAttaquePhysique
+	 * @param ptsAttaqueMagique
+	 * @param ptsAction
 	 */
-	public Arme(String nom, int ptsAttaque) {
+	public Arme(String nom, int ptsAttaquePhysique, int ptsAttaqueMagique, int ptsAction) {
 		super();
 		this.nom = nom;
-		this.ptsAttaque = ptsAttaque;
+		this.ptsAttaquePhysique = ptsAttaquePhysique;
+		this.ptsAttaqueMagique = ptsAttaqueMagique;
+		this.ptsAction = ptsAction;
 	}
-
 }
