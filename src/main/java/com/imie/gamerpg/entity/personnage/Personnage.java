@@ -5,12 +5,13 @@ package com.imie.gamerpg.entity.personnage;
 
 import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.armure.Armure;
+import com.imie.gamerpg.interfaceclass.ClasseRPG;
 
 /**
  * @author Fabrice
  *
  */
-public abstract class Personnage {
+public abstract class Personnage implements ClasseRPG {
 
 	private String nom;
 	private int ptsVie;

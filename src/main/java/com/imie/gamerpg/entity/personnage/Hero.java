@@ -17,4 +17,34 @@ public class Hero extends Personnage {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String getArmorRestriction() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getWeaponRestriction() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void fight(Personnage defender) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEquipable(Arme arme) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEquipable(Armure armure) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
