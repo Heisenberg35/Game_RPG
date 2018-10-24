@@ -124,7 +124,7 @@ public abstract class Personnage {
 	public boolean isAlive() {
 		boolean isAlive = true;
 
-		if (this.getPtsVie() < 0) {
+		if (this.getPtsVie() <= 0) {
 			isAlive = false;
 		}
 		return isAlive;
