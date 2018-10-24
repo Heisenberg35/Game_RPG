@@ -12,12 +12,16 @@ import com.imie.gamerpg.entity.interfaceclass.ClasseRPG;
  *
  */
 public class Hero extends Personnage {
-
+	/**
+	 * 
+	 * @param nom
+	 * @param ptsVie
+	 * @param ptsAction
+	 * @param arme
+	 * @param armure
+	 * @param classe
+	 */
 	public Hero(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure, ClasseRPG classe) {
 		super(nom, ptsVie, ptsAction, arme, armure, classe);
-		// TODO Auto-generated constructor stub
 	}
-
-
-
 }
