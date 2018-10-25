@@ -60,14 +60,18 @@ public class DefaultFighter implements ClasseRPG {
 	public void fight(Personnage defender) {
 		int degats = 0;
 		int temp = 0;
+		int temp_pa = me.getPtsAction();
 		
-		 temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
-		 if (temp  > 0)
-			 degats += temp;
-		 temp = me.getArme().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
-		 if (temp > 0)
-			 degats += temp;
-		 defender.setPtsVie(defender.getPtsVie() - degats);
+		while (temp_pa >= me.getArme().getPtsAction()) {
+			temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
+			if (temp  > 0)
+				degats += temp;
+			temp = me.getArme().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
+			if (temp > 0)
+				degats += temp;
+			defender.setPtsVie(defender.getPtsVie() - degats);
+			temp_pa -= me.getArme().getPtsAction();
+		}
 	}
 
 	public boolean isEquipable(Arme arme) {
