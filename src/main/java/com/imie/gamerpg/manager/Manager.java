@@ -78,10 +78,4 @@ public class Manager {
 	public void game() {
 
 	}
-
-	public void insertArmes() {
-		DAOManager<Arme> daoManager = new DAOManager<Arme>();
-		ArmeContract armeContract = new ArmeContract();
-		daoManager.insertArmes(armeContract);
-	}
 }

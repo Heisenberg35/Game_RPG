@@ -7,4 +7,5 @@ public interface Contract {
 	String getCreateTable();
 	String getSelectFields();
 	String getInsertFields();
+	String getDropTable();
 }

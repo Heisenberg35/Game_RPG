@@ -47,4 +47,10 @@ public class ArmureContract implements Contract{
 		return null;
 	}
 
+	@Override
+	public String getDropTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
