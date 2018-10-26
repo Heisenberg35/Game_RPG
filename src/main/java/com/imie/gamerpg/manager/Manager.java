@@ -129,12 +129,16 @@ public class Manager {
 	public void free_mode() {
 		int i = 0;
 
-		System.out.println("Entre le nombre de héros");
+		System.out.println("Entre le nombre de héros (maximum 10)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				i = ScannerProvider.getInstance().NextInt();
 				if (i <= 0)
 					System.out.println("T'as du temps à perdre à donner un mauvais chiffre ?");
+				else if (i > 10) {
+					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
+					i = 10;
+				}
 			}
 			else
 				System.out.println("T'es mal partit pour gagner le million toi");
@@ -147,6 +151,10 @@ public class Manager {
 				i = ScannerProvider.getInstance().NextInt();
 				if (i <= 0)
 					System.out.println("T'as du temps à perdre à donner un mauvais chiffre ?");
+				else if (i > 10) {
+					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
+					i = 10;
+				}
 			}
 			else
 				System.out.println("T'es mal partit pour gagner le million toi");
