@@ -63,7 +63,7 @@ public class DAOManager<T extends DBItem> {
 		return result;
 	}
 	
-	public void insertAll(Contract contract) {
+	public void insertArmes(Contract contract) {
 		Arme armePhysique = new ArmePhysique("Cuillère", 1, 0, 3);
 		Arme armePhysique2 = new ArmePhysique("Katana", 3, 0, 2);
 		Arme armePhysique3 = new ArmePhysique("Pistolet", 5, 0, 3);

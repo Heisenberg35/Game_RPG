@@ -4,6 +4,11 @@
 package com.imie.gamerpg.manager;
 
 import java.util.ArrayList;
+
+import com.imie.gamerpg.database.contract.ArmeContract;
+import com.imie.gamerpg.database.contract.Contract;
+import com.imie.gamerpg.database.dao.DAOManager;
+import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.arme.ArmeMagique;
 import com.imie.gamerpg.entity.arme.ArmeMixte;
 import com.imie.gamerpg.entity.arme.ArmePhysique;
@@ -74,4 +79,9 @@ public class Manager {
 
 	}
 
+	public void insertArmes() {
+		DAOManager<Arme> daoManager = new DAOManager<Arme>();
+		ArmeContract armeContract = new ArmeContract();
+		daoManager.insertArmes(armeContract);
+	}
 }
