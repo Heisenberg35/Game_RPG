@@ -35,7 +35,7 @@ public class ScannerProvider {
 	public int NextInt() {
 		int result = this.scanner.nextInt();
 
-		if (this.scanner.hasNextLine()) {
+		if (this.scanner.hasNextLine() && this.scanner.hasNextInt()) {
 			this.scanner.nextLine();
 		}
 		return result;
