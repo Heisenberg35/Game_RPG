@@ -24,4 +24,5 @@ public class Hero extends Personnage {
 	public Hero(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure, ClasseRPG classe) {
 		super(nom, ptsVie, ptsAction, arme, armure, classe);
 	}
+	public Hero() {}
 }

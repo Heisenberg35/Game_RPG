@@ -112,7 +112,6 @@ public abstract class Personnage {
 	 * @param armure
 	 */
 	public Personnage(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure, ClasseRPG classe) {
-		super();
 		this.nom = nom;
 		this.ptsVie = ptsVie;
 		this.ptsAction = ptsAction;
@@ -128,5 +127,9 @@ public abstract class Personnage {
 			isAlive = false;
 		}
 		return isAlive;
+	}
+	
+	public Personnage() {
+		;
 	}
 }
