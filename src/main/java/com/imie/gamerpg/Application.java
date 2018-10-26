@@ -17,6 +17,9 @@ public class Application {
 	public static void main(String[] args) {
 		Manager game_manager = new Manager();
 		
+		game_manager.insertArmes();
 		game_manager.menu();
+		
 	}
 }
+

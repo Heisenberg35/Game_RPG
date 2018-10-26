@@ -4,6 +4,8 @@
 package com.imie.gamerpg.manager;
 
 import java.util.ArrayList;
+import com.imie.gamerpg.database.contract.ArmeContract;
+import com.imie.gamerpg.database.dao.DAOManager;
 import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.arme.ArmeMagique;
 import com.imie.gamerpg.entity.arme.ArmeMixte;
@@ -75,7 +77,6 @@ public class Manager {
 	}
 
 	public void init() {
-		ScannerProvider sc = sc.getInstance();
 		System.out.println("AHAH NON TU RENTRES RIEN USER _|_");
 		this.heros.add(null);
 		this.monstres.add(null);
@@ -110,5 +111,12 @@ public class Manager {
 			else if (temp != 3)
 				System.out.println("Programme pas être cassé toi entrer valeur correcte BIIIIIP");
 		}
+	}
+
+		
+	public void insertArmes() {
+		DAOManager<Arme> daoManager = new DAOManager<Arme>();
+		ArmeContract armeContract = new ArmeContract();
+		daoManager.insertArmes(armeContract);
 	}
 }

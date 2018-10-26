@@ -3,11 +3,13 @@
  */
 package com.imie.gamerpg.entity.armure;
 
+import com.imie.gamerpg.database.DBItem;
+
 /**
  * @author Fabrice
  *
  */
-public abstract class Armure {
+public abstract class Armure extends DBItem {
 
 	private String nom;
 	private int ptsArmureMagique;

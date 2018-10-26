@@ -3,11 +3,13 @@
  */
 package com.imie.gamerpg.entity.arme;
 
+import com.imie.gamerpg.database.DBItem;
+
 /**
  * @author Fabrice
  *
  */
-public abstract class Arme {
+public abstract class Arme extends DBItem {
 
 	private String nom;
 	private int ptsAttaquePhysique;
@@ -75,4 +77,17 @@ public abstract class Arme {
 		this.ptsAttaqueMagique = ptsAttaqueMagique;
 		this.ptsAction = ptsAction;
 	}
+	public Arme() {
+		
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Arme [nom=" + nom + ", ptsAttaquePhysique=" + ptsAttaquePhysique + ", ptsAttaqueMagique="
+				+ ptsAttaqueMagique + ", ptsAction=" + ptsAction + "]";
+	}
+	
+	
 }
