@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import com.imie.gamerpg.database.DBItem;
 import com.imie.gamerpg.database.DBOpenHelper;
+import com.imie.gamerpg.database.contract.ArmeContract;
 import com.imie.gamerpg.database.contract.Contract;
 import com.imie.gamerpg.database.dto.DTO;
 import com.imie.gamerpg.entity.arme.Arme;
@@ -24,6 +24,45 @@ import com.imie.gamerpg.entity.arme.ArmePhysique;
  */
 public class DAOManager<T extends DBItem> {
 
+	public DAOManager() {
+
+		ArrayList<String> tablesNames = new ArrayList<String>();
+		tablesNames.add(ArmeContract.TABLE);
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<String> realTablesNames = new ArrayList<String>();
+		
+		try {
+			stmt = DBOpenHelper.getInstance().getConnection().createStatement();
+			rs = stmt.executeQuery("SHOW TABLES");
+			while (rs.next()) {
+				realTablesNames.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (!realTablesNames.containsAll(tablesNames)) {
+			ArmeContract arme = new ArmeContract();
+			String sql = new ArmeContract().getCreateTable();
+					try {
+						stmt = DBOpenHelper.getInstance().getConnection().createStatement();
+						stmt.executeUpdate(sql);
+						insertArmes(arme);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+		}
+
+	}
+
 	/**
 	 * 
 	 * @param contract
@@ -35,9 +74,7 @@ public class DAOManager<T extends DBItem> {
 
 		StringBuilder request = new StringBuilder();
 		request.append("SELECT ");
-		// request.append("(");
 		request.append(contract.getSelectFields());
-		// request.append(")");
 		request.append(" FROM ");
 		request.append(contract.getTable());
 
@@ -63,6 +100,10 @@ public class DAOManager<T extends DBItem> {
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @param contract
+	 */
 	public void insertArmes(Contract contract) {
 		Arme armePhysique = new ArmePhysique("Cuillère", 1, 0, 3);
 		Arme armePhysique2 = new ArmePhysique("Katana", 3, 0, 2);

@@ -8,11 +8,11 @@ package com.imie.gamerpg.database.contract;
  *
  */
 public class ArmeContract implements Contract{
-	
+
 	public static final String TABLE = "arme";
 	public static final String[] FIELDS = {"id","nom","ptsAttaquePhysique","ptsAttaqueMagique","ptsAction"};
 	public static final String CREATE_TABLE =
-			"CREATE TABLE " + TABLE + "(" +
+			"CREATE TABLE IF NOT EXISTS "+ TABLE + " (" +
 					FIELDS[0] + " INT " + " NOT NULL " + " PRIMARY KEY AUTO_INCREMENT " + ","+
 					FIELDS[1] + " VARCHAR(255) " + " NOT NULL " + "," +
 					FIELDS[2] + " INT " + " NOT NULL " + "," +
@@ -22,6 +22,7 @@ public class ArmeContract implements Contract{
 	public static final String SELECT_FIELDS = 
 			FIELDS[0] + "," + FIELDS[1] + "," + FIELDS[2] + "," + FIELDS[3] + "," + FIELDS[4];
 	public static final String INSERT_FIELDS = FIELDS[1] + "," + FIELDS[2] + "," + FIELDS[3] + "," + FIELDS[4];
+	public static final String DROP_TABLE = "DROP TABLE " + TABLE; 
 
 	@Override
 	public String getTable() {
@@ -46,6 +47,11 @@ public class ArmeContract implements Contract{
 	@Override
 	public String getInsertFields() {
 		return INSERT_FIELDS;
+	}
+
+	@Override
+	public String getDropTable() {
+		return DROP_TABLE;
 	}
 
 }
