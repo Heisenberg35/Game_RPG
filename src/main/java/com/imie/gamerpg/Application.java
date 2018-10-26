@@ -21,7 +21,6 @@ public class Application {
 		Manager game_manager = new Manager();
 
 		game_manager.menu();
-
 	}
 }
 
