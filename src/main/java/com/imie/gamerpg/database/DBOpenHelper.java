@@ -13,9 +13,9 @@ public class DBOpenHelper {
     {
     	MysqlDataSource dataSource = new MysqlDataSource();
     	dataSource.setUser("root");
-		dataSource.setPassword("root");
+		dataSource.setPassword("");
 		dataSource.setServerName("127.0.0.1");
-		dataSource.setDatabaseName("GameRPG");
+		dataSource.setDatabaseName("game_RPG");
 		try {
 			dataSource.setServerTimezone("UTC");
 			connection = dataSource.getConnection();

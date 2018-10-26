@@ -13,4 +13,7 @@ public class ArmeMixte extends Arme {
 		super(nom, ptsAttaquePhysique, ptsAttaqueMagique, ptsAction);
 	}
 
+	public ArmeMixte() {
+	}
+
 }
