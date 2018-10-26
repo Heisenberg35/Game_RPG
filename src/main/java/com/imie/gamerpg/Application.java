@@ -19,7 +19,7 @@ public class Application {
 	public static void main(String[] args) {
 		DAOManager<Arme> daoManager = new DAOManager<Arme>();
 		Manager game_manager = new Manager();
-		
+
 		game_manager.menu();
 
 	}

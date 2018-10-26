@@ -20,6 +20,7 @@ public class ArmureContract implements Contract{
 			")";
 	public static final String SELECT_FIELDS = 
 			FIELDS[0] + "," + FIELDS[1] + "," + FIELDS[2] + "," + FIELDS[3];
+	public static final String INSERT_FIELDS = FIELDS[1] + "," + FIELDS[2] + "," + FIELDS[3];
 
 	@Override
 	public String getTable() {
@@ -43,14 +44,7 @@ public class ArmureContract implements Contract{
 
 	@Override
 	public String getInsertFields() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getDropTable() {
-		// TODO Auto-generated method stub
-		return null;
+		return INSERT_FIELDS;
 	}
 
 }

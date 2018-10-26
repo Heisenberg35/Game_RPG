@@ -22,7 +22,6 @@ public class ArmeContract implements Contract{
 	public static final String SELECT_FIELDS = 
 			FIELDS[0] + "," + FIELDS[1] + "," + FIELDS[2] + "," + FIELDS[3] + "," + FIELDS[4];
 	public static final String INSERT_FIELDS = FIELDS[1] + "," + FIELDS[2] + "," + FIELDS[3] + "," + FIELDS[4];
-	public static final String DROP_TABLE = "DROP TABLE " + TABLE; 
 
 	@Override
 	public String getTable() {
@@ -48,10 +47,4 @@ public class ArmeContract implements Contract{
 	public String getInsertFields() {
 		return INSERT_FIELDS;
 	}
-
-	@Override
-	public String getDropTable() {
-		return DROP_TABLE;
-	}
-
 }

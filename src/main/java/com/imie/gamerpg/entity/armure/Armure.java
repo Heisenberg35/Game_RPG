@@ -68,4 +68,17 @@ public abstract class Armure extends DBItem {
 		this.ptsArmureMagique = ptsArmureMagique;
 		this.ptsArmurePhysique = ptsArmurePhysique;
 	}
+	public Armure() {
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Armure [nom=" + nom + ", ptsArmureMagique=" + ptsArmureMagique + ", ptsArmurePhysique="
+				+ ptsArmurePhysique + "]";
+	}
+	
 }
