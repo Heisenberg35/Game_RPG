@@ -9,4 +9,5 @@ public class DefaultMagicien extends DefaultFighter implements com.imie.gamerpg.
 		// TODO Auto-generated constructor stub
 	}
 
+	public DefaultMagicien() {}
 }

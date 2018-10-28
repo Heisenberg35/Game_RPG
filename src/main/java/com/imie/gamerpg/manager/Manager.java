@@ -10,7 +10,10 @@ import com.imie.gamerpg.entity.arme.ArmePhysique;
 import com.imie.gamerpg.entity.armure.ArmureMagique;
 import com.imie.gamerpg.entity.armure.ArmureMixte;
 import com.imie.gamerpg.entity.armure.ArmurePhysique;
+import com.imie.gamerpg.entity.defaultcharacters.DefaultBarbare;
 import com.imie.gamerpg.entity.defaultcharacters.DefaultFighter;
+import com.imie.gamerpg.entity.defaultcharacters.DefaultMagicien;
+import com.imie.gamerpg.entity.defaultcharacters.DefaultPaladin;
 import com.imie.gamerpg.entity.personnage.Hero;
 import com.imie.gamerpg.entity.personnage.Monstre;
 import com.imie.gamerpg.utils.ScannerProvider;
@@ -36,62 +39,217 @@ public class Manager {
 	/**
 	 * Permet de créer les héros de l'Array Hero
 	 * @param nb
-	 * @param heros2 
 	 */
-	public void add_to_list(int nb) {
+	public void add_to_hero() {
 		int temp = 0;
-		for (int i = 0; i <= nb; i++)
-		{
-			Hero character = new Hero();
-			System.out.println("Entre le nom de ton héros");
+		Hero character = new Hero();
+
+		System.out.println("Entre le nom de ton personnage (max 32 caractères)");
+		do {
 			character.setNom(ScannerProvider.getInstance().nextString());
-			System.out.println("Entre les HPs de ton héros entre 1 et 10");
-			do {
-				if (ScannerProvider.getInstance().hasNextInt()) {
-					temp = ScannerProvider.getInstance().NextInt();
-					if (temp <= 0)
-						System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
-					else if (temp > 10) {
-						System.out.println("Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
-						temp = 10;
-					}
+			if (character.getNom().length() == 0 || character.getNom().length() >= 32)
+				System.out.println("Mouais, un peu étrange ton nom quand même, donnes en un autre !");
+			ScannerProvider.getInstance().nextLine();
+		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
+
+
+		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0)
+					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
+				else if (temp > 10) {
+					System.out.println("Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
+					temp = 10;
 				}
-				else
-					System.out.println("T'as été bercé trop près du mur ?");
-			} while (temp <= 0);
-			character.setPtsVie(temp);
-			temp = 0;
-			System.out.println("Entre les points d'action de ton héros entre 1 et 6");
-			do {
-				if (ScannerProvider.getInstance().hasNextInt()) {
-					temp = ScannerProvider.getInstance().NextInt();
-					if (temp <= 0)
-						System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
-					else if (temp > 10) {
-						System.out.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
-						temp = 6;
-					}
+			}
+			else
+				System.out.println("T'as été bercé trop près du mur ?");
+		} while (temp <= 0);
+		character.setPtsVie(temp);
+		temp = 0;
+
+
+		System.out.println("Entre les points d'action de ton personnage (entre 1 et 6)");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0)
+					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
+				else if (temp > 10) {
+					System.out.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
+					temp = 6;
 				}
-				else
-					System.out.println("La date de péremption de ton cerveau est dépassée ?");
-			} while (temp <= 0);
+			}
+			else
+				System.out.println("La date de péremption de ton cerveau est dépassée ?");
+		} while (temp <= 0);
+		temp = 0;
+
+
+		System.out.println("Bien ! Tu as maintenant le choix entre 4 classes :");
+		System.out.println("1- Paladin\n2- Barbare\n3- Magicien\n4- Sans classe");
+		System.out.println("Entre le numéro qui correspond à la classe voulue");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0 || temp > 4)
+					System.out.println("C'est un concept intéressant, mais refusé par le développeur");
+			}
+			else
+				System.out.println("ArE yOu BrAiNdEaD ? mE tOo ! (:");
+		} while (temp <= 0 && temp > 4);
+		switch (temp) {
+		case 1 : character.setClasse(new DefaultPaladin());
+		break;
+		case 2 : character.setClasse(new DefaultBarbare());
+		break;
+		case 3 : character.setClasse(new DefaultMagicien());
+		break;
+		case 4 : character.setClasse(new DefaultFighter());
+		break;
 		}
+		temp = 0;
+
+
+		// Affichage des armes
+		System.out.println("Choisis l'arme du personnage maintenant");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0 || temp > 13)
+					System.out.println("Test déjà vérifié et jugé invalide, try harder !");
+			}
+			else
+				System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
+		} while (temp <= 0 && temp > 13);
+		// Need vérification de si l'arme est équipable avec le isEquipable
+		// Need assignation de l'arme
+		temp = 0;
+
+
+		// Affichage des armures
+		System.out.println("Last but not least, l'armure");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0 || temp > 13)
+					System.out.println("Your error is in another castle !");
+			}
+			else
+				System.out.println("404 int not found");
+		} while (temp <= 0 && temp > 12);
+		// Need vérification de si l'armure est équipable avec le isEquipable
+		// Need assignation de l'armure
 		
+		this.heros.add(character);
+	}
+	
+	public void add_to_monster() {
+		int temp = 0;
+		Monstre character = new Monstre();
+
+		System.out.println("Entre le nom de ton personnage (max 32 caractères)");
+		do {
+			character.setNom(ScannerProvider.getInstance().nextString());
+			if (character.getNom().length() == 0 || character.getNom().length() >= 32)
+				System.out.println("Mouais, un peu étrange ton nom quand même, donnes en un autre !");
+			ScannerProvider.getInstance().nextLine();
+		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
+
+
+		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0)
+					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
+				else if (temp > 10) {
+					System.out.println("Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
+					temp = 10;
+				}
+			}
+			else
+				System.out.println("T'as été bercé trop près du mur ?");
+		} while (temp <= 0);
+		character.setPtsVie(temp);
+		temp = 0;
+
+
+		System.out.println("Entre les points d'action de ton personnage (entre 1 et 6)");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0)
+					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
+				else if (temp > 10) {
+					System.out.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
+					temp = 6;
+				}
+			}
+			else
+				System.out.println("La date de péremption de ton cerveau est dépassée ?");
+		} while (temp <= 0);
+		temp = 0;
+
+
+		System.out.println("Bien ! Tu as maintenant le choix entre 4 classes :");
+		System.out.println("1- Paladin\n2- Barbare\n3- Magicien\n4- Sans classe");
+		System.out.println("Entre le numéro qui correspond à la classe voulue");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0 || temp > 4)
+					System.out.println("C'est un concept intéressant, mais refusé par le développeur");
+			}
+			else
+				System.out.println("ArE yOu BrAiNdEaD ? mE tOo ! (:");
+		} while (temp <= 0 && temp > 4);
+		switch (temp) {
+		case 1 : character.setClasse(new DefaultPaladin());
+		break;
+		case 2 : character.setClasse(new DefaultBarbare());
+		break;
+		case 3 : character.setClasse(new DefaultMagicien());
+		break;
+		case 4 : character.setClasse(new DefaultFighter());
+		break;
+		}
+		temp = 0;
+
+
+		// Affichage des armes
+		System.out.println("Choisis l'arme du personnage maintenant");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0 || temp > 13)
+					System.out.println("Test déjà vérifié et jugé invalide, try harder !");
+			}
+			else
+				System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
+		} while (temp <= 0 && temp > 13);
+		// Need vérification de si l'arme est équipable avec le isEquipable
+		// Need assignation de l'arme
+		temp = 0;
+
+
+		// Affichage des armes
+		System.out.println("Last but not least, l'armure");
+		do {
+			if (ScannerProvider.getInstance().hasNextInt()) {
+				temp = ScannerProvider.getInstance().NextInt();
+				if (temp <= 0 || temp > 13)
+					System.out.println("Your error is in another castle !");
+			}
+			else
+				System.out.println("404 int not found");
+		} while (temp <= 0 && temp > 12);
+		// Need vérification de si l'armure est équipable avec le isEquipable
+		// Need assignation de l'armure
 		
-		
-//		Hero hero = new Hero("leBarbare", 100, 10, new ArmePhysique("epée", 20, 0, 5),
-//				new ArmurePhysique("armureMaille", 0, 10), new DefaultFighter());
-//		Hero hero2 = new Hero("leMagicien", 100, 10, new ArmeMagique("baguette", 0, 15, 8),
-//				new ArmureMagique("armureTissu", 10, 0), new DefaultFighter());
-//		Hero hero3 = new Hero("lePaladin", 100, 10, new ArmeMixte("epée de flamme", 10, 10, 5),
-//				new ArmureMixte("armureGlaciale", 5, 5), new DefaultFighter());
-//		Hero hero4 = new Hero("leFighter", 100, 10, new ArmeMixte("lame d'acier", 10, 10, 5),
-//				new ArmureMixte("armureBlack", 5, 5), new DefaultFighter());
-//
-//		heros.add(hero);
-//		heros.add(hero2);
-//		heros.add(hero3);
-//		heros.add(hero4);
+		this.monstres.add(character);
 	}
 
 	/**
@@ -129,30 +287,62 @@ public class Manager {
 	public void free_mode() {
 		int i = 0;
 
-		System.out.println("Entre le nombre de héros");
+		System.out.println("Entre le nombre de héros (maximum 10)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				i = ScannerProvider.getInstance().NextInt();
 				if (i <= 0)
 					System.out.println("T'as du temps à perdre à donner un mauvais chiffre ?");
+				else if (i > 10) {
+					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
+					i = 10;
+				}
 			}
 			else
 				System.out.println("T'es mal partit pour gagner le million toi");
 		} while (i <= 0);
-		add_to_list(i);
+		for (int test = 0; test < i; test++) {
+			add_to_hero();
+		}
 		i = 0;
-		System.out.println("Entre le nombre d'ennemis");
+		
+		System.out.println("Entre le nombre d'étages (maximum 3)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				i = ScannerProvider.getInstance().NextInt();
 				if (i <= 0)
 					System.out.println("T'as du temps à perdre à donner un mauvais chiffre ?");
+				else if (i > 3) {
+					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 3.");
+					i = 3;
+				}
 			}
 			else
 				System.out.println("T'es mal partit pour gagner le million toi");
 		} while (i <= 0);
-		add_to_list(i);
-
+		for (int j = 0; j < i; j++) {
+			// créer un nouvel arrayList sur le donjon
+			System.out.println("Entre le nombre d'ennemis de l'étage " + (j + 1) );
+			do {
+				if (ScannerProvider.getInstance().hasNextInt()) {
+					i = ScannerProvider.getInstance().NextInt();
+					if (i <= 0)
+						System.out.println("T'as du temps à perdre à donner un mauvais chiffre ?");
+					else if (i > 10) {
+						System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
+						i = 10;
+					}
+				}
+				else
+					System.out.println("T'es mal partit pour gagner le million toi");
+			} while (i <= 0);
+			for (int test = 0; test < i; test++) {
+				add_to_monster();
+			}
+			System.out.println("Création de l'étage " + j + " terminé.");
+		}
+		
+		// Appel de la fonction combat du donjon
 	}
 
 	/**

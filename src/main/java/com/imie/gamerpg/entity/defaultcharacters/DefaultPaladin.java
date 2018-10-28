@@ -17,4 +17,5 @@ public class DefaultPaladin extends DefaultFighter implements Paladin {
 		// TODO Auto-generated constructor stub
 	}
 
+	public DefaultPaladin() {}
 }

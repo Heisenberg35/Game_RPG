@@ -17,4 +17,8 @@ public class DefaultBarbare extends DefaultFighter implements Magicien {
 		// TODO Auto-generated constructor stub
 	}
 
+	public DefaultBarbare() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

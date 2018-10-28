@@ -109,5 +109,4 @@ public class DefaultFighter implements ClasseRPG {
 	public DefaultFighter(Personnage character) {
 		this.me = character;
 	}
-
 }
