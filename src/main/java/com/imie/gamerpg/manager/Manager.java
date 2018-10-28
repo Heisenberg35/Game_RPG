@@ -4,9 +4,17 @@
 package com.imie.gamerpg.manager;
 
 import java.util.ArrayList;
+
+import com.imie.gamerpg.database.contract.ArmeContract;
+import com.imie.gamerpg.database.contract.ArmureContract;
+import com.imie.gamerpg.database.dao.DAOManager;
+import com.imie.gamerpg.database.dto.ArmeDTO;
+import com.imie.gamerpg.database.dto.ArmureDTO;
+import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.arme.ArmeMagique;
 import com.imie.gamerpg.entity.arme.ArmeMixte;
 import com.imie.gamerpg.entity.arme.ArmePhysique;
+import com.imie.gamerpg.entity.armure.Armure;
 import com.imie.gamerpg.entity.armure.ArmureMagique;
 import com.imie.gamerpg.entity.armure.ArmureMixte;
 import com.imie.gamerpg.entity.armure.ArmurePhysique;
@@ -38,6 +46,7 @@ public class Manager {
 
 	/**
 	 * Permet de créer les héros de l'Array Hero
+	 * 
 	 * @param nb
 	 */
 	public void add_to_hero() {
@@ -52,7 +61,6 @@ public class Manager {
 			ScannerProvider.getInstance().nextLine();
 		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
 
-
 		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
@@ -60,16 +68,15 @@ public class Manager {
 				if (temp <= 0)
 					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
 				else if (temp > 10) {
-					System.out.println("Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
+					System.out.println(
+							"Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
 					temp = 10;
 				}
-			}
-			else
+			} else
 				System.out.println("T'as été bercé trop près du mur ?");
 		} while (temp <= 0);
 		character.setPtsVie(temp);
 		temp = 0;
-
 
 		System.out.println("Entre les points d'action de ton personnage (entre 1 et 6)");
 		do {
@@ -78,15 +85,14 @@ public class Manager {
 				if (temp <= 0)
 					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
 				else if (temp > 10) {
-					System.out.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
+					System.out
+							.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
 					temp = 6;
 				}
-			}
-			else
+			} else
 				System.out.println("La date de péremption de ton cerveau est dépassée ?");
 		} while (temp <= 0);
 		temp = 0;
-
 
 		System.out.println("Bien ! Tu as maintenant le choix entre 4 classes :");
 		System.out.println("1- Paladin\n2- Barbare\n3- Magicien\n4- Sans classe");
@@ -96,56 +102,82 @@ public class Manager {
 				temp = ScannerProvider.getInstance().NextInt();
 				if (temp <= 0 || temp > 4)
 					System.out.println("C'est un concept intéressant, mais refusé par le développeur");
-			}
-			else
+			} else
 				System.out.println("ArE yOu BrAiNdEaD ? mE tOo ! (:");
 		} while (temp <= 0 && temp > 4);
 		switch (temp) {
-		case 1 : character.setClasse(new DefaultPaladin());
-		break;
-		case 2 : character.setClasse(new DefaultBarbare());
-		break;
-		case 3 : character.setClasse(new DefaultMagicien());
-		break;
-		case 4 : character.setClasse(new DefaultFighter());
-		break;
+		case 1:
+			character.setClasse(new DefaultPaladin());
+			break;
+		case 2:
+			character.setClasse(new DefaultBarbare());
+			break;
+		case 3:
+			character.setClasse(new DefaultMagicien());
+			break;
+		case 4:
+			character.setClasse(new DefaultFighter());
+			break;
 		}
 		temp = 0;
 
-
 		// Affichage des armes
 		System.out.println("Choisis l'arme du personnage maintenant");
+
+		DAOManager<Arme> daoManagerArme = new DAOManager<Arme>();
+		ArmeContract armeContract = new ArmeContract();
+		ArmeDTO armeDTO = new ArmeDTO();
+		ArrayList<Arme> armes = new ArrayList<>();
+		armes.addAll(daoManagerArme.selectAll(armeContract, armeDTO));
+
+		for (int i = 0; i < armes.size(); i++) {
+			System.out.println(i + 1 + " - " + armes.get(i).getNom() + " || Dégats Physique : "
+					+ armes.get(i).getPtsAttaquePhysique() + " || Dégats Magique : "
+					+ armes.get(i).getPtsAttaquePhysique() + " || Points d'action : " + armes.get(i).getPtsAction());
+
+		}
+
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				temp = ScannerProvider.getInstance().NextInt();
 				if (temp <= 0 || temp > 13)
 					System.out.println("Test déjà vérifié et jugé invalide, try harder !");
-			}
-			else
+			} else
 				System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
 		} while (temp <= 0 && temp > 13);
 		// Need vérification de si l'arme est équipable avec le isEquipable
 		// Need assignation de l'arme
 		temp = 0;
 
-
 		// Affichage des armures
 		System.out.println("Last but not least, l'armure");
+
+		DAOManager<Armure> daoManagerArmure = new DAOManager<Armure>();
+		ArmureContract armureContract = new ArmureContract();
+		ArmureDTO armureDTO = new ArmureDTO();
+		ArrayList<Armure> armures = new ArrayList<>();
+		armures.addAll(daoManagerArmure.selectAll(armureContract, armureDTO));
+
+		for (int i = 0; i < armures.size(); i++) {
+			System.out.println(i + 1 + " - " + armures.get(i).getNom() + " || Absorption Physique : "
+					+ armures.get(i).getPtsArmurePhysique() + " || Absorption Magique : "
+					+ armures.get(i).getPtsArmureMagique());
+		}
+
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				temp = ScannerProvider.getInstance().NextInt();
 				if (temp <= 0 || temp > 13)
 					System.out.println("Your error is in another castle !");
-			}
-			else
+			} else
 				System.out.println("404 int not found");
 		} while (temp <= 0 && temp > 12);
 		// Need vérification de si l'armure est équipable avec le isEquipable
 		// Need assignation de l'armure
-		
+
 		this.heros.add(character);
 	}
-	
+
 	public void add_to_monster() {
 		int temp = 0;
 		Monstre character = new Monstre();
@@ -158,7 +190,6 @@ public class Manager {
 			ScannerProvider.getInstance().nextLine();
 		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
 
-
 		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
@@ -166,16 +197,15 @@ public class Manager {
 				if (temp <= 0)
 					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
 				else if (temp > 10) {
-					System.out.println("Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
+					System.out.println(
+							"Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
 					temp = 10;
 				}
-			}
-			else
+			} else
 				System.out.println("T'as été bercé trop près du mur ?");
 		} while (temp <= 0);
 		character.setPtsVie(temp);
 		temp = 0;
-
 
 		System.out.println("Entre les points d'action de ton personnage (entre 1 et 6)");
 		do {
@@ -184,15 +214,14 @@ public class Manager {
 				if (temp <= 0)
 					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
 				else if (temp > 10) {
-					System.out.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
+					System.out
+							.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
 					temp = 6;
 				}
-			}
-			else
+			} else
 				System.out.println("La date de péremption de ton cerveau est dépassée ?");
 		} while (temp <= 0);
 		temp = 0;
-
 
 		System.out.println("Bien ! Tu as maintenant le choix entre 4 classes :");
 		System.out.println("1- Paladin\n2- Barbare\n3- Magicien\n4- Sans classe");
@@ -202,22 +231,24 @@ public class Manager {
 				temp = ScannerProvider.getInstance().NextInt();
 				if (temp <= 0 || temp > 4)
 					System.out.println("C'est un concept intéressant, mais refusé par le développeur");
-			}
-			else
+			} else
 				System.out.println("ArE yOu BrAiNdEaD ? mE tOo ! (:");
 		} while (temp <= 0 && temp > 4);
 		switch (temp) {
-		case 1 : character.setClasse(new DefaultPaladin());
-		break;
-		case 2 : character.setClasse(new DefaultBarbare());
-		break;
-		case 3 : character.setClasse(new DefaultMagicien());
-		break;
-		case 4 : character.setClasse(new DefaultFighter());
-		break;
+		case 1:
+			character.setClasse(new DefaultPaladin());
+			break;
+		case 2:
+			character.setClasse(new DefaultBarbare());
+			break;
+		case 3:
+			character.setClasse(new DefaultMagicien());
+			break;
+		case 4:
+			character.setClasse(new DefaultFighter());
+			break;
 		}
 		temp = 0;
-
 
 		// Affichage des armes
 		System.out.println("Choisis l'arme du personnage maintenant");
@@ -226,14 +257,12 @@ public class Manager {
 				temp = ScannerProvider.getInstance().NextInt();
 				if (temp <= 0 || temp > 13)
 					System.out.println("Test déjà vérifié et jugé invalide, try harder !");
-			}
-			else
+			} else
 				System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
 		} while (temp <= 0 && temp > 13);
 		// Need vérification de si l'arme est équipable avec le isEquipable
 		// Need assignation de l'arme
 		temp = 0;
-
 
 		// Affichage des armes
 		System.out.println("Last but not least, l'armure");
@@ -242,13 +271,12 @@ public class Manager {
 				temp = ScannerProvider.getInstance().NextInt();
 				if (temp <= 0 || temp > 13)
 					System.out.println("Your error is in another castle !");
-			}
-			else
+			} else
 				System.out.println("404 int not found");
 		} while (temp <= 0 && temp > 12);
 		// Need vérification de si l'armure est équipable avec le isEquipable
 		// Need assignation de l'armure
-		
+
 		this.monstres.add(character);
 	}
 
@@ -275,15 +303,18 @@ public class Manager {
 		System.out.println("AHAH NON TU RENTRES RIEN USER _|_");
 		this.heros.add(null);
 		this.monstres.add(null);
-		
-	}
-	
-	public void start() {}
 
-	public void game() {}
-	
-	public void history_mode() {}
-	
+	}
+
+	public void start() {
+	}
+
+	public void game() {
+	}
+
+	public void history_mode() {
+	}
+
 	public void free_mode() {
 		int i = 0;
 
@@ -297,15 +328,14 @@ public class Manager {
 					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
 					i = 10;
 				}
-			}
-			else
+			} else
 				System.out.println("T'es mal partit pour gagner le million toi");
 		} while (i <= 0);
 		for (int test = 0; test < i; test++) {
 			add_to_hero();
 		}
 		i = 0;
-		
+
 		System.out.println("Entre le nombre d'étages (maximum 3)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
@@ -316,13 +346,12 @@ public class Manager {
 					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 3.");
 					i = 3;
 				}
-			}
-			else
+			} else
 				System.out.println("T'es mal partit pour gagner le million toi");
 		} while (i <= 0);
 		for (int j = 0; j < i; j++) {
 			// créer un nouvel arrayList sur le donjon
-			System.out.println("Entre le nombre d'ennemis de l'étage " + (j + 1) );
+			System.out.println("Entre le nombre d'ennemis de l'étage " + (j + 1));
 			do {
 				if (ScannerProvider.getInstance().hasNextInt()) {
 					i = ScannerProvider.getInstance().NextInt();
@@ -332,8 +361,7 @@ public class Manager {
 						System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
 						i = 10;
 					}
-				}
-				else
+				} else
 					System.out.println("T'es mal partit pour gagner le million toi");
 			} while (i <= 0);
 			for (int test = 0; test < i; test++) {
@@ -341,7 +369,7 @@ public class Manager {
 			}
 			System.out.println("Création de l'étage " + j + " terminé.");
 		}
-		
+
 		// Appel de la fonction combat du donjon
 	}
 
