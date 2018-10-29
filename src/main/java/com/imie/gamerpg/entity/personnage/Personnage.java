@@ -128,8 +128,17 @@ public abstract class Personnage {
 		}
 		return isAlive;
 	}
-	
+
 	public Personnage() {
-		;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Personnage [nom=" + nom + ", ptsVie=" + ptsVie + ", ptsAction=" + ptsAction + ", arme=" + arme
+				+ ", armure=" + armure + ", classe=" + classe + "]";
+	}
+
 }

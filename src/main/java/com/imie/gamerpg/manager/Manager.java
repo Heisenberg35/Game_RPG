@@ -22,6 +22,7 @@ import com.imie.gamerpg.entity.defaultcharacters.DefaultBarbare;
 import com.imie.gamerpg.entity.defaultcharacters.DefaultFighter;
 import com.imie.gamerpg.entity.defaultcharacters.DefaultMagicien;
 import com.imie.gamerpg.entity.defaultcharacters.DefaultPaladin;
+import com.imie.gamerpg.entity.interfaceclass.Paladin;
 import com.imie.gamerpg.entity.personnage.Hero;
 import com.imie.gamerpg.entity.personnage.Monstre;
 import com.imie.gamerpg.utils.ScannerProvider;
@@ -92,6 +93,7 @@ public class Manager {
 			} else
 				System.out.println("La date de péremption de ton cerveau est dépassée ?");
 		} while (temp <= 0);
+		character.setPtsAction(temp);
 		temp = 0;
 
 		System.out.println("Bien ! Tu as maintenant le choix entre 4 classes :");
@@ -122,59 +124,90 @@ public class Manager {
 		temp = 0;
 
 		// Affichage des armes
-		System.out.println("Choisis l'arme du personnage maintenant");
-
 		DAOManager<Arme> daoManagerArme = new DAOManager<Arme>();
 		ArmeContract armeContract = new ArmeContract();
 		ArmeDTO armeDTO = new ArmeDTO();
 		ArrayList<Arme> armes = new ArrayList<>();
 		armes.addAll(daoManagerArme.selectAll(armeContract, armeDTO));
 
-		for (int i = 0; i < armes.size(); i++) {
-			System.out.println(i + 1 + " - " + armes.get(i).getNom() + " || Dégats Physique : "
-					+ armes.get(i).getPtsAttaquePhysique() + " || Dégats Magique : "
-					+ armes.get(i).getPtsAttaquePhysique() + " || Points d'action : " + armes.get(i).getPtsAction());
-
-		}
-
+		Arme choixArme;
 		do {
-			if (ScannerProvider.getInstance().hasNextInt()) {
-				temp = ScannerProvider.getInstance().NextInt();
-				if (temp <= 0 || temp > 13)
-					System.out.println("Test déjà vérifié et jugé invalide, try harder !");
-			} else
-				System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
-		} while (temp <= 0 && temp > 13);
-		// Need vérification de si l'arme est équipable avec le isEquipable
+			System.out.println("Choisis l'arme du personnage maintenant");
+			for (int i = 0; i < armes.size(); i++) {
+				System.out.println(i + 1 + " - " + armes.get(i).getNom() + " || Dégats Physique : "
+						+ armes.get(i).getPtsAttaquePhysique() + " || Dégats Magique : "
+						+ armes.get(i).getPtsAttaqueMagique() + " || Points d'action : " + armes.get(i).getPtsAction());
+
+			}
+
+			do {
+				if (ScannerProvider.getInstance().hasNextInt()) {
+					temp = ScannerProvider.getInstance().NextInt();
+					if (temp <= 1 || temp > 13)
+						System.out.println("Test déjà vérifié et jugé invalide, try harder !");
+				} else
+					System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
+			} while (temp <= 1 && temp > 13);
+
+			// Need vérification de si l'arme est équipable avec le isEquipable
+			if (armes.get(temp - 1).getPtsAttaqueMagique() == 0) {
+				choixArme = new ArmePhysique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+			} else if (armes.get(temp - 1).getPtsAttaquePhysique() == 0) {
+				choixArme = new ArmeMagique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+			} else {
+				choixArme = new ArmeMixte(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+			}
+
+		} while (!(character.getClasse().isEquipable(choixArme)));
+
 		// Need assignation de l'arme
+		character.setArme(choixArme);
+
 		temp = 0;
 
 		// Affichage des armures
-		System.out.println("Last but not least, l'armure");
-
 		DAOManager<Armure> daoManagerArmure = new DAOManager<Armure>();
 		ArmureContract armureContract = new ArmureContract();
 		ArmureDTO armureDTO = new ArmureDTO();
 		ArrayList<Armure> armures = new ArrayList<>();
 		armures.addAll(daoManagerArmure.selectAll(armureContract, armureDTO));
 
-		for (int i = 0; i < armures.size(); i++) {
-			System.out.println(i + 1 + " - " + armures.get(i).getNom() + " || Absorption Physique : "
-					+ armures.get(i).getPtsArmurePhysique() + " || Absorption Magique : "
-					+ armures.get(i).getPtsArmureMagique());
-		}
-
+		Armure choixArmure;
 		do {
-			if (ScannerProvider.getInstance().hasNextInt()) {
-				temp = ScannerProvider.getInstance().NextInt();
-				if (temp <= 0 || temp > 13)
-					System.out.println("Your error is in another castle !");
-			} else
-				System.out.println("404 int not found");
-		} while (temp <= 0 && temp > 12);
-		// Need vérification de si l'armure est équipable avec le isEquipable
-		// Need assignation de l'armure
+			System.out.println("Last but not least, l'armure");
 
+			for (int i = 0; i < armures.size(); i++) {
+				System.out.println(i + 1 + " - " + armures.get(i).getNom() + " || Absorption Physique : "
+						+ armures.get(i).getPtsArmurePhysique() + " || Absorption Magique : "
+						+ armures.get(i).getPtsArmureMagique());
+			}
+
+			do {
+				if (ScannerProvider.getInstance().hasNextInt()) {
+					temp = ScannerProvider.getInstance().NextInt();
+					if (temp <= 0 || temp > 13)
+						System.out.println("Your error is in another castle !");
+				} else
+					System.out.println("404 int not found");
+			} while (temp <= 0 && temp > 12);
+			// Need vérification de si l'armure est équipable avec le isEquipable
+			if (armures.get(temp - 1).getPtsArmureMagique() == 0) {
+				choixArmure = new ArmurePhysique(armures.get(temp - 1).getNom(),
+						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+			} else if (armures.get(temp - 1).getPtsArmurePhysique() == 0) {
+				choixArmure = new ArmureMagique(armures.get(temp - 1).getNom(),
+						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+			} else {
+				choixArmure = new ArmureMixte(armures.get(temp - 1).getNom(),
+						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+			}
+
+		} while (!(character.getClasse().isEquipable(choixArmure)));
+		// Need assignation de l'armure
+		character.setArmure(choixArmure);
 		this.heros.add(character);
 	}
 
