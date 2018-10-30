@@ -53,47 +53,47 @@ public class Manager {
 		int temp = 0;
 		Hero character = new Hero();
 
-		System.out.println("Entre le nom de ton personnage (max 32 caractères)");
-		do {
-			character.setNom(ScannerProvider.getInstance().nextString());
-			if (character.getNom().length() == 0 || character.getNom().length() >= 32)
-				System.out.println("Mouais, un peu étrange ton nom quand même, donnes en un autre !");
-			ScannerProvider.getInstance().nextLine();
-		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
-
-		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
-		do {
-			if (ScannerProvider.getInstance().hasNextInt()) {
-				temp = ScannerProvider.getInstance().NextInt();
-				if (temp <= 0)
-					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
-				else if (temp > 10) {
-					System.out.println(
-							"Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
-					temp = 10;
-				}
-			} else
-				System.out.println("T'as été bercé trop près du mur ?");
-		} while (temp <= 0);
-		character.setPtsVie(temp);
-		temp = 0;
-
-		System.out.println("Entre les points d'action de ton personnage (entre 1 et 6)");
-		do {
-			if (ScannerProvider.getInstance().hasNextInt()) {
-				temp = ScannerProvider.getInstance().NextInt();
-				if (temp <= 0)
-					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
-				else if (temp > 10) {
-					System.out
-							.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
-					temp = 6;
-				}
-			} else
-				System.out.println("La date de péremption de ton cerveau est dépassée ?");
-		} while (temp <= 0);
-		character.setPtsAction(temp);
-		temp = 0;
+//		System.out.println("Entre le nom de ton personnage (max 32 caractères)");
+//		do {
+//			character.setNom(ScannerProvider.getInstance().nextString());
+//			if (character.getNom().length() == 0 || character.getNom().length() >= 32)
+//				System.out.println("Mouais, un peu étrange ton nom quand même, donnes en un autre !");
+//			ScannerProvider.getInstance().nextLine();
+//		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
+//
+//		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
+//		do {
+//			if (ScannerProvider.getInstance().hasNextInt()) {
+//				temp = ScannerProvider.getInstance().NextInt();
+//				if (temp <= 0)
+//					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
+//				else if (temp > 10) {
+//					System.out.println(
+//							"Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
+//					temp = 10;
+//				}
+//			} else
+//				System.out.println("T'as été bercé trop près du mur ?");
+//		} while (temp <= 0);
+//		character.setPtsVie(temp);
+//		temp = 0;
+//
+//		System.out.println("Entre les points d'action de ton personnage (entre 1 et 6)");
+//		do {
+//			if (ScannerProvider.getInstance().hasNextInt()) {
+//				temp = ScannerProvider.getInstance().NextInt();
+//				if (temp <= 0)
+//					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
+//				else if (temp > 10) {
+//					System.out
+//							.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
+//					temp = 6;
+//				}
+//			} else
+//				System.out.println("La date de péremption de ton cerveau est dépassée ?");
+//		} while (temp <= 0);
+//		character.setPtsAction(temp);
+//		temp = 0;
 
 		System.out.println("Bien ! Tu as maintenant le choix entre 4 classes :");
 		System.out.println("1- Paladin\n2- Barbare\n3- Magicien\n4- Sans classe");
@@ -139,7 +139,7 @@ public class Manager {
 
 			}
 
-			do {
+			do { // gérer le passage d'une string
 				if (ScannerProvider.getInstance().hasNextInt()) {
 					temp = ScannerProvider.getInstance().NextInt();
 					if (temp <= 1 || temp > 13)
@@ -159,7 +159,6 @@ public class Manager {
 				choixArme = new ArmeMixte(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
 						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
 			}
-
 		} while (!(character.getClasse().isEquipable(choixArme)));
 
 		// Need assignation de l'arme
