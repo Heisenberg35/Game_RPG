@@ -75,30 +75,26 @@ public class DefaultFighter implements ClasseRPG {
 	}
 
 	public boolean isEquipable(Arme arme) {
-		boolean equipable = false;
+		boolean equipable = true;
 		
-		if (this instanceof Paladin && (arme instanceof ArmeMagique || arme instanceof ArmeMixte))
-			equipable = true;
-		else if (this instanceof Magicien && arme instanceof ArmeMagique)
-			equipable = true;
-		else if (this instanceof Barbare && arme instanceof ArmePhysique)
-			equipable = true;
-		else if (this instanceof DefaultFighter)
-			equipable = true;
+		if (this instanceof Paladin && arme instanceof ArmePhysique)
+			equipable = false;
+		if (this instanceof Magicien && (arme instanceof ArmePhysique || arme instanceof ArmeMixte))
+			equipable = false;
+		if (this instanceof Barbare && (arme instanceof ArmeMagique || arme instanceof ArmeMixte))
+			equipable = false;
 		return equipable;
 	}
 
 	public boolean isEquipable(Armure armure) {
-		boolean equipable = false;
+		boolean equipable = true;
 		
-		if (this instanceof Paladin && (armure instanceof ArmureMagique || armure instanceof ArmureMixte))
-			equipable = true;
-		else if (this instanceof Magicien && armure instanceof ArmureMagique)
-			equipable = true;
-		else if (this instanceof Barbare && armure instanceof ArmurePhysique)
-			equipable = true;
-		else if (this instanceof DefaultFighter)
-			equipable = true;
+		if (this instanceof Paladin && armure instanceof ArmurePhysique)
+			equipable = false;
+		if (this instanceof Magicien && (armure instanceof ArmurePhysique || armure instanceof ArmureMixte))
+			equipable = false;
+		if (this instanceof Barbare && (armure instanceof ArmureMagique || armure instanceof ArmureMixte))
+			equipable = false;
 		return equipable;
 	}
 	

@@ -120,6 +120,12 @@ public abstract class Personnage {
 		this.classe = classe;
 	}
 
+	public Personnage(String nom, int ptsVie, int ptsAction, ClasseRPG classe) {
+		this.nom = nom;
+		this.ptsVie = ptsVie;
+		this.ptsAction = ptsAction;
+		this.classe = classe;
+	}
 	public boolean isAlive() {
 		boolean isAlive = true;
 
