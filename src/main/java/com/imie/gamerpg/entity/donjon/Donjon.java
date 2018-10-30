@@ -26,7 +26,25 @@ public class Donjon {
 		this.name = name;
 	}
 
-	public Donjon() {}
+	public ArrayList<Etage> getEtage() {
+		return etage;
+	}
+
+	public void setEtage(ArrayList<Etage> etage) {
+		this.etage = etage;
+	}
+
+	public int getNb_etage() {
+		return nb_etage;
+	}
+
+	public void setNb_etage(int nb_etage) {
+		this.nb_etage = nb_etage;
+	}
+
+	public Donjon() {
+		this.etage = new ArrayList<Etage>();
+	}
 	
 	public void aff_fight(ArrayList<Monstre> monstre, ArrayList<Hero> heros) {
 		int temp = 0;

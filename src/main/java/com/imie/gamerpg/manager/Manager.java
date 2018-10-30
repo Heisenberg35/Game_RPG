@@ -22,6 +22,7 @@ import com.imie.gamerpg.entity.defaultcharacters.DefaultFighter;
 import com.imie.gamerpg.entity.defaultcharacters.DefaultMagicien;
 import com.imie.gamerpg.entity.defaultcharacters.DefaultPaladin;
 import com.imie.gamerpg.entity.donjon.Donjon;
+import com.imie.gamerpg.entity.donjon.Etage;
 import com.imie.gamerpg.entity.personnage.Hero;
 import com.imie.gamerpg.entity.personnage.Monstre;
 import com.imie.gamerpg.utils.ScannerProvider;
@@ -36,7 +37,7 @@ public class Manager {
 	private ArrayList<Monstre> monstres;
 	private ArrayList<Arme> armes;
 	private ArrayList<Armure> armures;
-	private ArrayList<Donjon> donjon;
+	private Donjon donjon;
 
 	/**
 	 * Constructeur manager
@@ -46,7 +47,7 @@ public class Manager {
 		this.monstres = new ArrayList<Monstre>();
 		this.armes = new ArrayList<Arme>();
 		this.armures = new ArrayList<Armure>();
-		this.donjon = new ArrayList<Donjon>();
+		this.donjon = new Donjon();
 	}
 
 	/**
@@ -320,6 +321,11 @@ public class Manager {
 	public void free_mode() {
 		int i = 0;
 
+		// Récupération du nom du donjon
+		System.out.println("Quel sera le nom de ton donjon ?");
+		this.donjon.setName(ScannerProvider.getInstance().nextString());
+		
+		// Récupération du nombre de héros
 		System.out.println("Entre le nombre de héros (maximum 10)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
@@ -333,12 +339,14 @@ public class Manager {
 			} else
 				System.out.println("T'es mal partit pour gagner le million toi");
 		} while (i <= 0);
-		
+
+		// Création des héros
 		for (int test = 0; test < i; test++) {
 			add_to_hero();
 		}
 		i = 0;
 
+		// Récupération du nombre d'étages du donjon
 		System.out.println("Entre le nombre d'étages (maximum 3)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
@@ -352,8 +360,11 @@ public class Manager {
 			} else
 				System.out.println("T'es mal partit pour gagner le million toi");
 		} while (i <= 0);
+		this.donjon.setNb_etage(i);
+
+		// Récupération du nombre d'étages et création des étages
 		for (int j = 0; j < i; j++) {
-			// créer un nouvel arrayList sur le donjon
+			this.donjon.getEtage().add(new Etage(j));
 			System.out.println("Entre le nombre d'ennemis de l'étage " + (j + 1));
 			do {
 				if (ScannerProvider.getInstance().hasNextInt()) {
@@ -367,6 +378,8 @@ public class Manager {
 				} else
 					System.out.println("T'es mal partit pour gagner le million toi");
 			} while (i <= 0);
+			
+			// Création des monstres de l'étage
 			for (int test = 0; test < i; test++) {
 				add_to_monster();
 			}
