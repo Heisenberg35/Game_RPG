@@ -4,7 +4,6 @@
 package com.imie.gamerpg.manager;
 
 import java.util.ArrayList;
-
 import com.imie.gamerpg.database.contract.ArmeContract;
 import com.imie.gamerpg.database.contract.ArmureContract;
 import com.imie.gamerpg.database.dao.DAOManager;
