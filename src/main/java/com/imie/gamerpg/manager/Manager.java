@@ -59,9 +59,9 @@ public class Manager {
 			character.setNom(ScannerProvider.getInstance().nextString());
 			if (character.getNom().length() == 0 || character.getNom().length() >= 32)
 				System.out.println("Mouais, un peu étrange ton nom quand même, donnes en un autre !");
-			ScannerProvider.getInstance().nextLine();
+			//ScannerProvider.getInstance().nextLine();
 		} while (character.getNom().length() != 0 && character.getNom().length() <= 32);
-
+		System.out.println(character.toString());
 		System.out.println("Entre les HPs de ton héros (entre 1 et 10)");
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
