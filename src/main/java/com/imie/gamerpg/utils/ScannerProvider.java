@@ -61,8 +61,8 @@ public class ScannerProvider {
 		return str;
 	}
 	
-	public void nextLine() {
-		this.scanner.nextLine();
+	public String nextLine() {
+		return this.scanner.nextLine();
 	}
 	
 	public void close_scanner() {

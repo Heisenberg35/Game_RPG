@@ -165,10 +165,11 @@ public class Manager {
 
 		System.out.println("Entre le nom de ton personnage (max 32 caractères)");
 		do {
-			name = ScannerProvider.getInstance().nextString();
-			if (name.length() == 0 || name.length() >= 32)
+			name = ScannerProvider.getInstance().nextLine();
+			if (name.length() == 0 || name.length() >= 32) {
 				System.out.println("Mouais, un peu étrange ton nom quand même, donnes en un autre !");
-		} while (name.length() != 0 && name.length() <= 32);
+			}
+		} while (!(name.length() != 0 && name.length() <= 32));
 		return name;
 	}
 
@@ -249,7 +250,7 @@ public class Manager {
 
 		// Récupération du nom du donjon
 		System.out.println("Quel sera le nom de ton donjon ?");
-		this.donjon.setName(ScannerProvider.getInstance().nextString());
+		this.donjon.setName(ScannerProvider.getInstance().nextLine());
 
 		// Récupération du nombre de héros
 		System.out.println("Entre le nombre de héros (maximum 10)");
