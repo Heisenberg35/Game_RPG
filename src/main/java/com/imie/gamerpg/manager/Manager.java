@@ -299,9 +299,26 @@ public class Manager {
 			for (int count = 0; count < i; count++) {
 				this.donjon.getEtage().get(j).getMonstre()
 						.add(new Monstre(get_char_name(), get_char_HP(), get_char_PA(), get_char_class()));
-				// Choisir une arme et l'ajouter
-				this.donjon.getEtage().get(j).getMonstre().get(count).setArme(null);
-				this.donjon.getEtage().get(j).getMonstre().get(count).setArmure(null);
+				// Choisir une arme
+				Arme choixArme = get_Arme();
+				// Vérification que l'arme choisie correspond à la classe
+				while (!(this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().isEquipable(choixArme))) {
+					System.out.println(
+							"L'arme choisie ne correspond pas à la classe du monstre, veuillez re-choisir une arme correspondante à la classe du personnage ");
+					choixArme = get_Arme();
+				}
+				// Attribution de l'armure choisie au personnage
+				this.donjon.getEtage().get(j).getMonstre().get(count).setArme(choixArme);
+				// Choisir une armure
+				Armure choixArmure = get_Armure();
+				// Vérification que l'armure choisie correspond à la classe
+				while (!(this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().isEquipable(choixArmure))) {
+					System.out.println(
+							"L'armure choisie ne correspond pas à la classe du personnage, veuillez re-choisir une armure correspondante à la classe du personnage ");
+					choixArmure = get_Armure();
+				}
+				// Attribution de l'armure choisie au personnage
+				this.donjon.getEtage().get(j).getMonstre().get(count).setArmure(choixArmure);
 			}
 			System.out.println("Création de l'étage " + j + " terminé.");
 		}
