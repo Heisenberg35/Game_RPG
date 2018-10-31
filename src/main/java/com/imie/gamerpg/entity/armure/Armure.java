@@ -12,9 +12,9 @@ import com.imie.gamerpg.database.DBItem;
 public abstract class Armure extends DBItem {
 
 	private String nom;
-	private int ptsArmureMagique;
 	private int ptsArmurePhysique;
-
+	private int ptsArmureMagique;
+	
 	/**
 	 * @return the nom
 	 */
@@ -62,11 +62,11 @@ public abstract class Armure extends DBItem {
 	 * @param ptsArmureMagique
 	 * @param ptsArmurePhysique
 	 */
-	public Armure(String nom, int ptsArmureMagique, int ptsArmurePhysique) {
+	public Armure(String nom, int ptsArmurePhysique, int ptsArmureMagique) {
 		super();
 		this.nom = nom;
-		this.ptsArmureMagique = ptsArmureMagique;
 		this.ptsArmurePhysique = ptsArmurePhysique;
+		this.ptsArmureMagique = ptsArmureMagique;
 	}
 	public Armure() {
 		
