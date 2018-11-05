@@ -275,9 +275,13 @@ public class Manager {
 			
 			// Choisir une arme
 			this.heros.get(count).setArme(get_Arme(this.heros.get(count)));
+			if (this.heros.get(count).getClasse() instanceof DefaultBarbare)
+				this.heros.get(count).setSecondary_weapon(get_Arme(this.heros.get(count)));
 			
 			// Choisir une armure
 			this.heros.get(count).setArmure(get_Armure(this.heros.get(count)));
+			
+			this.heros.get(count).getClasse().setMe(this.heros.get(count));
 		}
 		i = 0;
 
@@ -301,9 +305,13 @@ public class Manager {
 				
 				// Choisir une arme
 				this.donjon.getEtage().get(j).getMonstre().get(count).setArme(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
+				if (this.donjon.getEtage().get(j).getMonstre().get(count).getClasse() instanceof DefaultBarbare)
+					this.donjon.getEtage().get(j).getMonstre().get(count).setSecondary_weapon(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
 				
 				// Choisir une armure
 				this.donjon.getEtage().get(j).getMonstre().get(count).setArmure(get_Armure(this.donjon.getEtage().get(j).getMonstre().get(count)));
+				
+				this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().setMe(this.donjon.getEtage().get(j).getMonstre().get(count));
 			}
 			System.out.println("Création de l'étage " + j + " terminé.");
 		}

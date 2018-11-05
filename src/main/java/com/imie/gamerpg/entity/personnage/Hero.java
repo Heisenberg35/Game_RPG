@@ -28,6 +28,10 @@ public class Hero extends Personnage {
 	public Hero(String nom, int ptsVie, int ptsAction, ClasseRPG classe) {
 		super(nom, ptsVie, ptsAction, classe);
 	}
+	
+	public Hero(String nom, int ptsVie, int ptsAction) {
+		super(nom, ptsVie, ptsAction);
+	}
 
 	public Hero() {}
 }

@@ -29,6 +29,10 @@ public class Monstre extends Personnage {
 		super(nom, ptsVie, ptsAction, classe);
 	}
 	
+	public Monstre(String nom, int ptsVie, int ptsAction) {
+		super(nom, ptsVie, ptsAction);
+	}
+	
 	public Monstre() {}
 
 }

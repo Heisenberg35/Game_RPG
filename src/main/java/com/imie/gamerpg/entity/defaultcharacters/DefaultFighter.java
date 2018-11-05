@@ -24,7 +24,11 @@ import com.imie.gamerpg.entity.personnage.Personnage;
 public class DefaultFighter implements ClasseRPG {
 
 	protected Personnage me;
-	
+
+	public void setMe(Personnage me) {
+		this.me = me;
+	}
+
 	public String getArmorRestriction() {
 		String to_return = new String();
 		
@@ -61,7 +65,7 @@ public class DefaultFighter implements ClasseRPG {
 		int degats = 0;
 		int temp = 0;
 		int temp_pa = me.getPtsAction();
-		
+
 		while (temp_pa >= me.getArme().getPtsAction()) {
 			temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
 			if (temp  > 0)

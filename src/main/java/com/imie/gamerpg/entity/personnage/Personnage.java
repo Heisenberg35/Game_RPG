@@ -17,6 +17,7 @@ public abstract class Personnage {
 	private int ptsVie;
 	private int ptsAction;
 	private Arme arme;
+	private Arme secondary_weapon;
 	private Armure armure;
 	private ClasseRPG classe;
 
@@ -90,6 +91,14 @@ public abstract class Personnage {
 		this.arme = arme;
 	}
 
+	public Arme getSecondary_weapon() {
+		return secondary_weapon;
+	}
+
+	public void setSecondary_weapon(Arme secondary_weapon) {
+		this.secondary_weapon = secondary_weapon;
+	}
+	
 	/**
 	 * @return the armure
 	 */
@@ -120,6 +129,12 @@ public abstract class Personnage {
 		this.classe = classe;
 	}
 
+	public Personnage(String nom, int ptsVie, int ptsAction) {
+		this.nom = nom;
+		this.ptsVie = ptsVie;
+		this.ptsAction = ptsAction;
+	}
+	
 	public Personnage(String nom, int ptsVie, int ptsAction, ClasseRPG classe) {
 		this.nom = nom;
 		this.ptsVie = ptsVie;
@@ -146,5 +161,4 @@ public abstract class Personnage {
 		return "Personnage [nom=" + nom + ", ptsVie=" + ptsVie + ", ptsAction=" + ptsAction + ", arme=" + arme
 				+ ", armure=" + armure + ", classe=" + classe + "]";
 	}
-
 }

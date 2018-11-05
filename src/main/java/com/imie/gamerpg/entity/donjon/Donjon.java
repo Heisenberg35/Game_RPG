@@ -93,7 +93,7 @@ public class Donjon {
 			System.out.println("Une horde de monstres terrifiants arrivent, préparez vous pour le combat !");
 			while (count < 69) // Etage et Hero is alive
 			{
-				aff_fight(this.etage.get(count).getMonstre(), heros);
+				//aff_fight(this.etage.get(count).getMonstre(), heros);
 				temp = 0;
 				if (this.etage.get(count).getMonstre().size() > heros.size())
 					temp = this.etage.get(count).getMonstre().size();
