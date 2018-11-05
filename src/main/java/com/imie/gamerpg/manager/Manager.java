@@ -33,6 +33,12 @@ import com.imie.gamerpg.utils.ScannerProvider;
  */
 public class Manager {
 
+	private DAOManager<Arme> daoManagerArme;
+	private DAOManager<Armure> daoManagerArmure;
+	private ArmeContract armeContract;
+	private ArmureContract armureContract;
+	private ArmeDTO armeDTO;
+	private ArmureDTO armureDTO;
 	private ArrayList<Hero> heros;
 	private ArrayList<Arme> armes;
 	private ArrayList<Armure> armures;
@@ -42,9 +48,17 @@ public class Manager {
 	 * Constructeur manager
 	 */
 	public Manager() {
-		this.heros = new ArrayList<Hero>();
+		this.daoManagerArme = new DAOManager<Arme>();
+		this.armeContract = new ArmeContract();
+		this.armeDTO = new ArmeDTO();
 		this.armes = new ArrayList<Arme>();
-		this.armures = new ArrayList<Armure>();
+		this.armes.addAll(daoManagerArme.selectAll(armeContract, armeDTO));
+		this.daoManagerArmure = new DAOManager<Armure>();
+		this.armureContract = new ArmureContract();
+		this.armureDTO = new ArmureDTO();
+		this.armures = new ArrayList<>();
+		this.armures.addAll(daoManagerArmure.selectAll(armureContract, armureDTO));
+		this.heros = new ArrayList<Hero>();
 		this.donjon = new Donjon();
 	}
 
@@ -55,12 +69,6 @@ public class Manager {
 	private Arme get_Arme() {
 		int temp = 0;
 		// Affichage des armes
-		DAOManager<Arme> daoManagerArme = new DAOManager<Arme>();
-		ArmeContract armeContract = new ArmeContract();
-		ArmeDTO armeDTO = new ArmeDTO();
-		ArrayList<Arme> armes = new ArrayList<>();
-		armes.addAll(daoManagerArme.selectAll(armeContract, armeDTO));
-
 		Arme choixArme;
 		do {
 			System.out.println("Choisis l'arme du personnage maintenant");
@@ -102,12 +110,6 @@ public class Manager {
 	private Armure get_Armure() {
 		int temp = 0;
 		// Affichage des armures
-		DAOManager<Armure> daoManagerArmure = new DAOManager<Armure>();
-		ArmureContract armureContract = new ArmureContract();
-		ArmureDTO armureDTO = new ArmureDTO();
-		ArrayList<Armure> armures = new ArrayList<>();
-		armures.addAll(daoManagerArmure.selectAll(armureContract, armureDTO));
-
 		Armure choixArmure;
 		do {
 			System.out.println("Last but not least, l'armure");
