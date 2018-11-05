@@ -55,7 +55,7 @@ public class Donjon {
 			temp = heros.size();
 		System.out.println("Héros                                                      Ennemis");
 		
-		for (int i = 1; i <= temp; i++) {
+		for (int i = 0; i < temp; i++) {
 
 			System.out.print("Nom : " + heros.get(i).getNom());
 			for (int z = 1; z <= (32 - heros.get(i).getNom().length()); z++)
@@ -88,8 +88,8 @@ public class Donjon {
 		int temp = 0;
 		
 		System.out.println("Bienvenue dans le donjon \"" + this.name + "\".");
-		for (int count = 1; count <= nb_etage; count++) {
-			System.out.println("Vous êtes actuellement à l'étage "+ count);
+		for (int count = 0; count < nb_etage; count++) {
+			System.out.println("Vous êtes actuellement à l'étage "+ (count +1));
 			System.out.println("Une horde de monstres terrifiants arrivent, préparez vous pour le combat !");
 			while (count < 69) // Etage et Hero is alive
 			{
@@ -99,7 +99,7 @@ public class Donjon {
 					temp = this.etage.get(count).getMonstre().size();
 				else
 					temp = heros.size();
-				for (int z = 1; z <= temp; z++) { // On a pas parcouru toute la liste
+				for (int z = 0; z < temp; z++) { // On a pas parcouru toute la liste
 					heros.get(z).getClasse().fight(this.etage.get(count).getMonstre().get(z));
 				}
 			}

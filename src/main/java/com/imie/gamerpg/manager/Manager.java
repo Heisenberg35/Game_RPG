@@ -25,6 +25,7 @@ import com.imie.gamerpg.entity.donjon.Donjon;
 import com.imie.gamerpg.entity.donjon.Etage;
 import com.imie.gamerpg.entity.personnage.Hero;
 import com.imie.gamerpg.entity.personnage.Monstre;
+import com.imie.gamerpg.entity.personnage.Personnage;
 import com.imie.gamerpg.utils.ScannerProvider;
 
 /**
@@ -66,40 +67,44 @@ public class Manager {
 	 * 
 	 * @return
 	 */
-	private Arme get_Arme() {
+	private Arme get_Arme(Personnage character) {
 		int temp = 0;
 		// Affichage des armes
 		Arme choixArme;
 		do {
-			System.out.println("Choisis l'arme du personnage maintenant");
-			for (int i = 0; i < armes.size(); i++) {
-				System.out.println(i + 1 + " - " + armes.get(i).getNom() + " || Dégats Physique : "
-						+ armes.get(i).getPtsAttaquePhysique() + " || Dégats Magique : "
-						+ armes.get(i).getPtsAttaqueMagique() + " || Points d'action : " + armes.get(i).getPtsAction());
+			do {
+				System.out.println("Choisis l'arme du personnage maintenant");
+				for (int i = 0; i < armes.size(); i++) {
+					System.out.println(i + 1 + " - " + armes.get(i).getNom() + " || Dégats Physique : "
+							+ armes.get(i).getPtsAttaquePhysique() + " || Dégats Magique : "
+							+ armes.get(i).getPtsAttaqueMagique() + " || Points d'action : " + armes.get(i).getPtsAction());
 
+				}
+
+				if (ScannerProvider.getInstance().hasNextInt()) {
+					temp = ScannerProvider.getInstance().NextInt();
+					if (temp < 1 || temp > 13)
+						System.out.println("Test déjà vérifié et jugé invalide, try harder !");
+				} else
+					System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
+			} while (temp < 1 || temp > 13);
+
+			// En fonction de l'arme choisie, on détermine si celle-ci est une arme
+			// physique, magique ou mixte
+			if (armes.get(temp - 1).getPtsAttaqueMagique() == 0) {
+				choixArme = new ArmePhysique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+			} else if (armes.get(temp - 1).getPtsAttaquePhysique() == 0) {
+				choixArme = new ArmeMagique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+			} else {
+				choixArme = new ArmeMixte(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
 			}
-
-			if (ScannerProvider.getInstance().hasNextInt()) {
-				temp = ScannerProvider.getInstance().NextInt();
-				if (temp < 1 || temp > 13)
-					System.out.println("Test déjà vérifié et jugé invalide, try harder !");
-			} else
-				System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
-		} while (temp < 1 || temp > 13);
-
-		// En fonction de l'arme choisie, on détermine si celle-ci est une arme
-		// physique, magique ou mixte
-		if (armes.get(temp - 1).getPtsAttaqueMagique() == 0) {
-			choixArme = new ArmePhysique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
-					armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
-		} else if (armes.get(temp - 1).getPtsAttaquePhysique() == 0) {
-			choixArme = new ArmeMagique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
-					armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
-		} else {
-			choixArme = new ArmeMixte(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
-					armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
-		}
-
+			if (!character.getClasse().isEquipable(choixArme))
+				System.out.println(
+						"L'arme choisie ne correspond pas à la classe du personnage, veuillez re-choisir une arme correspondante à la classe du personnage ");
+		} while (!(character.getClasse().isEquipable(choixArme)));
 		return choixArme;
 	}
 
@@ -107,39 +112,45 @@ public class Manager {
 	 * 
 	 * @return
 	 */
-	private Armure get_Armure() {
+	private Armure get_Armure(Personnage character) {
 		int temp = 0;
 		// Affichage des armures
 		Armure choixArmure;
 		do {
-			System.out.println("Last but not least, l'armure");
+			do {
+				System.out.println("Last but not least, l'armure");
 
-			for (int i = 0; i < armures.size(); i++) {
-				System.out.println(i + 1 + " - " + armures.get(i).getNom() + " || Absorption Physique : "
-						+ armures.get(i).getPtsArmurePhysique() + " || Absorption Magique : "
-						+ armures.get(i).getPtsArmureMagique());
+				for (int i = 0; i < armures.size(); i++) {
+					System.out.println(i + 1 + " - " + armures.get(i).getNom() + " || Absorption Physique : "
+							+ armures.get(i).getPtsArmurePhysique() + " || Absorption Magique : "
+							+ armures.get(i).getPtsArmureMagique());
+				}
+
+				if (ScannerProvider.getInstance().hasNextInt()) {
+					temp = ScannerProvider.getInstance().NextInt();
+					if (temp < 1 || temp > 12)
+						System.out.println("Your error is in another castle !");
+				} else
+					System.out.println("404 int not found");
+			} while (temp < 1 || temp > 12);
+
+			// En fonction de l'armure choisie, on détermine si celle-ci est une armure
+			// physique, magique ou mixte
+			if (armures.get(temp - 1).getPtsArmureMagique() == 0) {
+				choixArmure = new ArmurePhysique(armures.get(temp - 1).getNom(),
+						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+			} else if (armures.get(temp - 1).getPtsArmurePhysique() == 0) {
+				choixArmure = new ArmureMagique(armures.get(temp - 1).getNom(),
+						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+			} else {
+				choixArmure = new ArmureMixte(armures.get(temp - 1).getNom(), armures.get(temp - 1).getPtsArmurePhysique(),
+						armures.get(temp - 1).getPtsArmureMagique());
 			}
 
-			if (ScannerProvider.getInstance().hasNextInt()) {
-				temp = ScannerProvider.getInstance().NextInt();
-				if (temp < 1 || temp > 12)
-					System.out.println("Your error is in another castle !");
-			} else
-				System.out.println("404 int not found");
-		} while (temp < 1 || temp > 12);
-
-		// En fonction de l'armure choisie, on détermine si celle-ci est une armure
-		// physique, magique ou mixte
-		if (armures.get(temp - 1).getPtsArmureMagique() == 0) {
-			choixArmure = new ArmurePhysique(armures.get(temp - 1).getNom(),
-					armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
-		} else if (armures.get(temp - 1).getPtsArmurePhysique() == 0) {
-			choixArmure = new ArmureMagique(armures.get(temp - 1).getNom(),
-					armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
-		} else {
-			choixArmure = new ArmureMixte(armures.get(temp - 1).getNom(), armures.get(temp - 1).getPtsArmurePhysique(),
-					armures.get(temp - 1).getPtsArmureMagique());
-		}
+			if (!(character.getClasse().isEquipable(choixArmure)))
+				System.out.println(
+						"L'armure choisie ne correspond pas à la classe du personnage, veuillez re-choisir une armure correspondante à la classe du personnage ");
+		} while (!(character.getClasse().isEquipable(choixArmure)));
 
 		return choixArmure;
 	}
@@ -261,26 +272,12 @@ public class Manager {
 		// Création des héros
 		for (int count = 0; count < i; count++) {
 			this.heros.add(new Hero(get_char_name(), get_char_HP(), get_char_PA(), get_char_class()));
+			
 			// Choisir une arme
-			Arme choixArme = get_Arme();
-			// Vérification que l'arme choisie correspond à la classe
-			while (!(this.heros.get(count).getClasse().isEquipable(choixArme))) {
-				System.out.println(
-						"L'arme choisie ne correspond pas à la classe du personnage, veuillez re-choisir une arme correspondante à la classe du personnage ");
-				choixArme = get_Arme();
-			}
-			// Attribution de l'arme choisie au personnage
-			this.heros.get(count).setArme(choixArme);
+			this.heros.get(count).setArme(get_Arme(this.heros.get(count)));
+			
 			// Choisir une armure
-			Armure choixArmure = get_Armure();
-			// Vérification que l'armure choisie correspond à la classe
-			while (!(this.heros.get(count).getClasse().isEquipable(choixArmure))) {
-				System.out.println(
-						"L'armure choisie ne correspond pas à la classe du personnage, veuillez re-choisir une armure correspondante à la classe du personnage ");
-				choixArmure = get_Armure();
-			}
-			// Attribution de l'armure choisie au personnage
-			this.heros.get(count).setArmure(choixArmure);
+			this.heros.get(count).setArmure(get_Armure(this.heros.get(count)));
 		}
 		i = 0;
 
@@ -301,26 +298,12 @@ public class Manager {
 			for (int count = 0; count < i; count++) {
 				this.donjon.getEtage().get(j).getMonstre()
 						.add(new Monstre(get_char_name(), get_char_HP(), get_char_PA(), get_char_class()));
+				
 				// Choisir une arme
-				Arme choixArme = get_Arme();
-				// Vérification que l'arme choisie correspond à la classe
-				while (!(this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().isEquipable(choixArme))) {
-					System.out.println(
-							"L'arme choisie ne correspond pas à la classe du monstre, veuillez re-choisir une arme correspondante à la classe du personnage ");
-					choixArme = get_Arme();
-				}
-				// Attribution de l'armure choisie au personnage
-				this.donjon.getEtage().get(j).getMonstre().get(count).setArme(choixArme);
+				this.donjon.getEtage().get(j).getMonstre().get(count).setArme(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
+				
 				// Choisir une armure
-				Armure choixArmure = get_Armure();
-				// Vérification que l'armure choisie correspond à la classe
-				while (!(this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().isEquipable(choixArmure))) {
-					System.out.println(
-							"L'armure choisie ne correspond pas à la classe du personnage, veuillez re-choisir une armure correspondante à la classe du personnage ");
-					choixArmure = get_Armure();
-				}
-				// Attribution de l'armure choisie au personnage
-				this.donjon.getEtage().get(j).getMonstre().get(count).setArmure(choixArmure);
+				this.donjon.getEtage().get(j).getMonstre().get(count).setArmure(get_Armure(this.donjon.getEtage().get(j).getMonstre().get(count)));
 			}
 			System.out.println("Création de l'étage " + j + " terminé.");
 		}

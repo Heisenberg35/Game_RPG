@@ -23,7 +23,7 @@ import com.imie.gamerpg.entity.personnage.Personnage;
  */
 public class DefaultFighter implements ClasseRPG {
 
-	Personnage me;
+	protected Personnage me;
 	
 	public String getArmorRestriction() {
 		String to_return = new String();
