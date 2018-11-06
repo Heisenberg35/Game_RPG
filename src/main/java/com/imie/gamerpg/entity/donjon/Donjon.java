@@ -53,17 +53,18 @@ public class Donjon {
 			temp = monstre.size();
 		else
 			temp = heros.size();
-		System.out.println("Héros                                                      Ennemis");
+		System.out.println("Héros                                                                                        "
+				+ "                                                  Ennemis");
 		
 		for (int i = 0; i < temp; i++) {
 
 			System.out.print("Nom : " + heros.get(i).getNom());
-			for (int z = 1; z <= (32 - heros.get(i).getNom().length()); z++)
+			for (int z = 0; z < 96; z++)
 				System.out.print(" ");
 			System.out.println("Nom : " + monstre.get(i).getNom());
 			
 			System.out.print("PVs : " + heros.get(i).getPtsVie() + " PAs : " + heros.get(i).getPtsAction());
-			for (int z = 1; z <= 32; z++)
+			for (int z = 0; z < 88; z++)
 				System.out.print(" ");
 			System.out.println("PVs : " + monstre.get(i).getPtsVie() + " PAs : " + monstre.get(i).getPtsAction());
 			
@@ -88,21 +89,39 @@ public class Donjon {
 		int temp = 0;
 		
 		System.out.println("Bienvenue dans le donjon \"" + this.name + "\".");
+
+		// Boucle sur chaque étage du donjon
 		for (int count = 0; count < nb_etage; count++) {
 			System.out.println("Vous êtes actuellement à l'étage "+ (count +1));
 			System.out.println("Une horde de monstres terrifiants arrivent, préparez vous pour le combat !");
-			while (count < 69) // Etage et Hero is alive
+			
+			// Boucle du combat de l'étage
+			while (heros.size() > 0 && this.etage.get(count).getMonstre().size() > 0)
 			{
-				//aff_fight(this.etage.get(count).getMonstre(), heros);
+				aff_fight(this.etage.get(count).getMonstre(), heros);
 				temp = 0;
 				if (this.etage.get(count).getMonstre().size() > heros.size())
 					temp = this.etage.get(count).getMonstre().size();
 				else
 					temp = heros.size();
+				
+				// Boucle d'attaque
 				for (int z = 0; z < temp; z++) { // On a pas parcouru toute la liste
 					heros.get(z).getClasse().fight(this.etage.get(count).getMonstre().get(z));
+					
+					// Récupérer la saisie user 1 ou 2 pour attaquer ou défendre
+					
+					// Ajouter un Rand pour une somme de pos à retourner
 				}
 			}
+			
+			// Condition pour vérifier si l'équipe de héros est mort ou pas
+			if (heros.size() == 0) {
+				System.out.println("Votre équipe de zéros s'envole vers d'autres cieux.");
+				count = nb_etage;
+			}
+			else
+				System.out.println("Votre équipe est victorieuse !");
 		}
 	}
 	
