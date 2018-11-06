@@ -69,8 +69,6 @@ public class Donjon {
 			temp = heros.size();
 		}
 
-		System.out.println("Temp = " + temp + " ; heros_size : "
-		+ heros.size() + " ; monstre_size : " + monstre.size());
 		for (int i = 0; i < temp; i++) {
 
 			if (i < heros.size()) {
