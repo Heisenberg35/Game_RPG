@@ -44,6 +44,17 @@ public class Manager {
 	private ArrayList<Arme> armes;
 	private ArrayList<Armure> armures;
 	private Donjon donjon;
+	private int gold;
+
+	public int getGold() {
+		return gold;
+	}
+	
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	
 
 	/**
 	 * Constructeur manager
@@ -61,6 +72,7 @@ public class Manager {
 		this.armures.addAll(daoManagerArmure.selectAll(armureContract, armureDTO));
 		this.heros = new ArrayList<Hero>();
 		this.donjon = new Donjon();
+		this.gold = 0;
 	}
 
 	/**
@@ -256,6 +268,7 @@ public class Manager {
 	}
 
 	public void history_mode() {
+		System.out.println("Toujours en développement, on espère que ça sortira avant KH 3");
 	}
 
 	public void free_mode() {
@@ -313,9 +326,9 @@ public class Manager {
 				
 				this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().setMe(this.donjon.getEtage().get(j).getMonstre().get(count));
 			}
-			System.out.println("Création de l'étage " + j + " terminé.");
+			System.out.println("Création de l'étage " + (j  + 1) + " terminé.");
 		}
-		donjon.Combat(heros);
+		this.setGold(this.getGold() + donjon.Combat(heros));
 	}
 
 	/**

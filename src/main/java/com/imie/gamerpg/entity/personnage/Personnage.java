@@ -20,6 +20,27 @@ public abstract class Personnage {
 	private Arme secondary_weapon;
 	private Armure armure;
 	private ClasseRPG classe;
+	private int bonus_armure_phy;
+	private int bonus_armure_mag;
+
+	public int getBonus_armure_phy() {
+		return bonus_armure_phy;
+	}
+
+
+	public void setBonus_armure_phy(int bonus_armure_phy) {
+		this.bonus_armure_phy = bonus_armure_phy;
+	}
+
+
+	public int getBonus_armure_mag() {
+		return bonus_armure_mag;
+	}
+
+
+	public void setBonus_armure_mag(int bonus_armure_mag) {
+		this.bonus_armure_mag = bonus_armure_mag;
+	}
 
 	/**
 	 * @return the nom
@@ -140,7 +161,10 @@ public abstract class Personnage {
 		this.ptsVie = ptsVie;
 		this.ptsAction = ptsAction;
 		this.classe = classe;
+		this.bonus_armure_phy = 0;
+		this.bonus_armure_mag = 0;
 	}
+	
 	public boolean isAlive() {
 		boolean isAlive = true;
 

@@ -68,14 +68,41 @@ public class DefaultFighter implements ClasseRPG {
 
 		while (temp_pa >= me.getArme().getPtsAction()) {
 			temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
-			if (temp  > 0)
+			if (temp  > 0) {
+				if (defender.getBonus_armure_phy() != 0) {
+					if (temp > defender.getBonus_armure_phy()) {
+						temp -= defender.getBonus_armure_phy();
+						defender.setBonus_armure_phy(0);
+					}
+					else if (temp <= defender.getBonus_armure_phy()) {
+						defender.setBonus_armure_phy(defender.getBonus_armure_phy() - temp);
+						temp = 0;
+					}
+				}
 				degats += temp;
+			}
 			temp = me.getArme().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
-			if (temp > 0)
+			if (temp > 0) {
+				if (defender.getBonus_armure_mag() != 0) {
+					if (temp > defender.getBonus_armure_mag()) {
+						temp -= defender.getBonus_armure_mag();
+						defender.setBonus_armure_mag(0);
+					}
+					else if (temp <= defender.getBonus_armure_mag()) {
+						defender.setBonus_armure_mag(defender.getBonus_armure_mag() - temp);
+						temp = 0;
+					}
+				}
 				degats += temp;
-			defender.setPtsVie(defender.getPtsVie() - degats);
+			}
 			temp_pa -= me.getArme().getPtsAction();
 		}
+		defender.setPtsVie(defender.getPtsVie() - degats);
+	}
+
+	public void defendre(Personnage me) {
+		me.setBonus_armure_phy(me.getBonus_armure_phy() + me.getArmure().getPtsArmurePhysique());
+		me.setBonus_armure_mag(me.getBonus_armure_mag() + me.getArmure().getPtsArmureMagique());
 	}
 
 	public boolean isEquipable(Arme arme) {
