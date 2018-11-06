@@ -59,7 +59,7 @@ public class Donjon {
 		for (int i = 0; i < temp; i++) {
 
 			System.out.print("Nom : " + heros.get(i).getNom());
-			for (int z = 0; z < 96; z++)
+			for (int z = 0; z < 96; z++) 
 				System.out.print(" ");
 			System.out.println("Nom : " + monstre.get(i).getNom());
 			
@@ -68,10 +68,10 @@ public class Donjon {
 				System.out.print(" ");
 			System.out.println("PVs : " + monstre.get(i).getPtsVie() + " PAs : " + monstre.get(i).getPtsAction());
 			
-			System.out.print("Classe : " + heros.get(i).getClasse());
-			for (int z = 1; z <= 32; z++)
+			System.out.print("Classe : " + heros.get(i).getClasse().toString());
+			for (int z = 1; z <= 88; z++)
 				System.out.print(" ");
-			System.out.println("Classe : " + monstre.get(i).getClasse());
+			System.out.println("Classe : " + monstre.get(i).getClasse().toString());
 			
 			System.out.print("Arme : " + heros.get(i).getArme());
 			for (int z = 1; z <= 32; z++)
