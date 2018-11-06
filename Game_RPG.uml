@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_r99oUOG-EeiiNb9VCrNeFQ" name="Game_RPG">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_sgnCYOG-EeiiNb9VCrNeFQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_TiZb4OG_EeipVZVprPxmBQ" name="Utilisateur"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_rqePIOG_EeipVZVprPxmBQ" name="Initialisation">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_V2flcOG_EeipVZVprPxmBQ" name="Rentre les informations du donjon"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_jNGaMOG_EeipVZVprPxmBQ" name="Rentre les informations HEROS"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_mp3cAOG_EeipVZVprPxmBQ" name="Rentre les informations MONSTRES"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_x_pogOG_EeipVZVprPxmBQ" name="Combat">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_1bJfAOG_EeipVZVprPxmBQ" name="Décide de défendre"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_5qKdIOG_EeipVZVprPxmBQ" name="Décide d'attaquer"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_BEYL8OHAEeipVZVprPxmBQ" memberEnd="_BEwmcOHAEeipVZVprPxmBQ _BE3UIOHAEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BEvYUOHAEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BEvYUeHAEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_BEwmcOHAEeipVZVprPxmBQ" name="rentre les informations du donjon" type="_V2flcOG_EeipVZVprPxmBQ" association="_BEYL8OHAEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_BE3UIOHAEeipVZVprPxmBQ" name="utilisateur" type="_TiZb4OG_EeipVZVprPxmBQ" association="_BEYL8OHAEeipVZVprPxmBQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_ECj0UOHAEeipVZVprPxmBQ" name="Game / Jeu"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ugBv4OHTEeipVZVprPxmBQ" memberEnd="_ugBv4-HTEeipVZVprPxmBQ _ugBv5OHTEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ugBv4eHTEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ugBv4uHTEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ugBv4-HTEeipVZVprPxmBQ" name="rentre les informations heros" type="_jNGaMOG_EeipVZVprPxmBQ" association="_ugBv4OHTEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ugBv5OHTEeipVZVprPxmBQ" name="utilisateur" type="_TiZb4OG_EeipVZVprPxmBQ" association="_ugBv4OHTEeipVZVprPxmBQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_vVbt4OHTEeipVZVprPxmBQ" memberEnd="_vVbt4-HTEeipVZVprPxmBQ _vVbt5OHTEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vVbt4eHTEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vVbt4uHTEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_vVbt4-HTEeipVZVprPxmBQ" name="rentre les informations monstres" type="_mp3cAOG_EeipVZVprPxmBQ" association="_vVbt4OHTEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_vVbt5OHTEeipVZVprPxmBQ" type="_TiZb4OG_EeipVZVprPxmBQ" association="_vVbt4OHTEeipVZVprPxmBQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_x-GZQOHTEeipVZVprPxmBQ" memberEnd="_x-GZQ-HTEeipVZVprPxmBQ _x-GZROHTEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x-GZQeHTEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x-GZQuHTEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_x-GZQ-HTEeipVZVprPxmBQ" name="décide de défendre" type="_1bJfAOG_EeipVZVprPxmBQ" association="_x-GZQOHTEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_x-GZROHTEeipVZVprPxmBQ" type="_TiZb4OG_EeipVZVprPxmBQ" association="_x-GZQOHTEeipVZVprPxmBQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_zz7ScOHTEeipVZVprPxmBQ" memberEnd="_zz7Sc-HTEeipVZVprPxmBQ _zz7SdOHTEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zz7SceHTEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zz7ScuHTEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_zz7Sc-HTEeipVZVprPxmBQ" name="décide d'attaquer" type="_5qKdIOG_EeipVZVprPxmBQ" association="_zz7ScOHTEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_zz7SdOHTEeipVZVprPxmBQ" type="_TiZb4OG_EeipVZVprPxmBQ" association="_zz7ScOHTEeipVZVprPxmBQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_AKSLIOHUEeipVZVprPxmBQ" memberEnd="_AKSLI-HUEeipVZVprPxmBQ _AKSLJOHUEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AKSLIeHUEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AKSLIuHUEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_AKSLI-HUEeipVZVprPxmBQ" name="game / jeu" type="_ECj0UOHAEeipVZVprPxmBQ" association="_AKSLIOHUEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_AKSLJOHUEeipVZVprPxmBQ" name="décide de défendre" type="_1bJfAOG_EeipVZVprPxmBQ" association="_AKSLIOHUEeipVZVprPxmBQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B6bTEOHUEeipVZVprPxmBQ" memberEnd="_B6bTE-HUEeipVZVprPxmBQ _B6bTFOHUEeipVZVprPxmBQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_B6bTEeHUEeipVZVprPxmBQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_B6bTEuHUEeipVZVprPxmBQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_B6bTE-HUEeipVZVprPxmBQ" type="_ECj0UOHAEeipVZVprPxmBQ" association="_B6bTEOHUEeipVZVprPxmBQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_B6bTFOHUEeipVZVprPxmBQ" name="décide d'attaquer" type="_5qKdIOG_EeipVZVprPxmBQ" association="_B6bTEOHUEeipVZVprPxmBQ"/>
+  </packagedElement>
+</uml:Model>
