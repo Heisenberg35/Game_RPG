@@ -28,7 +28,7 @@ public class DefaultBarbare extends DefaultFighter implements Barbare {
 		int temp = 0;
 		int tempPa = me.getPtsAction();
 
-		while (tempPa >= (me.getArme().getPtsAction() + me.getSecondary_weapon().getPtsAction() / 2)) {
+		while (tempPa >= (me.getArme().getPtsAction() + me.getsecondaryWeapon().getPtsAction() / 2)) {
 			temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
 			if (temp  > 0) {
 				degats += temp;
@@ -39,17 +39,17 @@ public class DefaultBarbare extends DefaultFighter implements Barbare {
 			}
 			tempPa -= me.getArme().getPtsAction();
 
-			temp = me.getSecondary_weapon().getPtsAttaquePhysique()
+			temp = me.getsecondaryWeapon().getPtsAttaquePhysique()
 					- defender.getArmure().getPtsArmurePhysique();
 			if (temp  > 0) {
 				degats += temp;
 			}
-			temp = me.getSecondary_weapon().getPtsAttaqueMagique()
+			temp = me.getsecondaryWeapon().getPtsAttaqueMagique()
 					- defender.getArmure().getPtsArmureMagique();
 			if (temp > 0) {
 				degats += temp;
 			}
-			tempPa -= me.getSecondary_weapon().getPtsAction() / 2;
+			tempPa -= me.getsecondaryWeapon().getPtsAction() / 2;
 		}
 		defender.setPtsVie(defender.getPtsVie() - degats);
 	}

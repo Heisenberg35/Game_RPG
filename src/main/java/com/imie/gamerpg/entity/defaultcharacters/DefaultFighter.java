@@ -23,10 +23,12 @@ import com.imie.gamerpg.entity.personnage.Personnage;
  *
  */
 public class DefaultFighter implements ClasseRPG {
-/**
- *
- */
+	/**
+	 *
+	 */
 	protected Personnage me;
+
+	public DefaultFighter() {}
 
 	public void setMe(Personnage me) {
 		this.me = me;
@@ -36,38 +38,40 @@ public class DefaultFighter implements ClasseRPG {
 	 * Fonction qui renvoie la restriction d'armure
 	 */
 	public String getArmorRestriction() {
-		String to_return = new String();
+		String toReturn = new String();
 
-		to_return = "Le personnage ne peut équiper qu'une armure ";
-		if (this instanceof Paladin)
-			to_return += "Mixte||Magique";
-		else if (this instanceof Magicien)
-			to_return += "Magique";
-		else if (this instanceof Barbare)
-			to_return += "Physique";
-		else if (this instanceof DefaultFighter)
-			to_return += "Physique||Magique||Mixte";
-		to_return += ".";
-		return to_return;
+		toReturn = "Le personnage ne peut équiper qu'une armure ";
+		if (this instanceof Paladin) {
+			toReturn += "Mixte||Magique";
+		} else if (this instanceof Magicien) {
+			toReturn += "Magique";
+		} else if (this instanceof Barbare) {
+			toReturn += "Physique";
+		} else if (this instanceof DefaultFighter) {
+			toReturn += "Physique||Magique||Mixte";
+		}
+		toReturn += ".";
+		return toReturn;
 	}
 
 	/**
 	 * Fonction qui renvoie la restriction d'arme
 	 */
 	public String getWeaponRestriction() {
-		String to_return = new String();
-		
-		to_return = "Le personnage ne peut équiper qu'une arme ";
-		if (this instanceof Paladin)
-			to_return += "Mixte||Magique";
-		else if (this instanceof Magicien)
-			to_return += "Magique";
-		else if (this instanceof Barbare)
-			to_return += "Physique";
-		else if (this instanceof DefaultFighter)
-			to_return += "Physique||Magique||Mixte";
-		to_return += ".";
-		return to_return;
+		String toReturn = new String();
+
+		toReturn = "Le personnage ne peut équiper qu'une arme ";
+		if (this instanceof Paladin) {
+			toReturn += "Mixte||Magique";
+		} else if (this instanceof Magicien) {
+			toReturn += "Magique";
+		} else if (this instanceof Barbare) {
+			toReturn += "Physique";
+		} else if (this instanceof DefaultFighter) {
+			toReturn += "Physique||Magique||Mixte";
+		}
+		toReturn += ".";
+		return toReturn;
 	}
 
 	/**
@@ -76,18 +80,17 @@ public class DefaultFighter implements ClasseRPG {
 	public void fight(Personnage defender) {
 		int degats = 0;
 		int temp = 0;
-		int temp_pa = me.getPtsAction();
+		int tempPa = me.getPtsAction();
 
-		while (temp_pa >= me.getArme().getPtsAction()) {
+		while (tempPa >= me.getArme().getPtsAction()) {
 			temp = me.getArme().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
-			if (temp  > 0) {
-				if (defender.getBonus_armure_phy() != 0) {
-					if (temp > defender.getBonus_armure_phy()) {
-						temp -= defender.getBonus_armure_phy();
-						defender.setBonus_armure_phy(0);
-					}
-					else if (temp <= defender.getBonus_armure_phy()) {
-						defender.setBonus_armure_phy(defender.getBonus_armure_phy() - temp);
+			if (temp > 0) {
+				if (defender.getbonusArmurePhy() != 0) {
+					if (temp > defender.getbonusArmurePhy()) {
+						temp -= defender.getbonusArmurePhy();
+						defender.setbonusArmurePhy(0);
+					} else if (temp <= defender.getbonusArmurePhy()) {
+						defender.setbonusArmurePhy(defender.getbonusArmurePhy() - temp);
 						temp = 0;
 					}
 				}
@@ -95,19 +98,18 @@ public class DefaultFighter implements ClasseRPG {
 			}
 			temp = me.getArme().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
 			if (temp > 0) {
-				if (defender.getBonus_armure_mag() != 0) {
-					if (temp > defender.getBonus_armure_mag()) {
-						temp -= defender.getBonus_armure_mag();
-						defender.setBonus_armure_mag(0);
-					}
-					else if (temp <= defender.getBonus_armure_mag()) {
-						defender.setBonus_armure_mag(defender.getBonus_armure_mag() - temp);
+				if (defender.getbonusArmureMag() != 0) {
+					if (temp > defender.getbonusArmureMag()) {
+						temp -= defender.getbonusArmureMag();
+						defender.setbonusArmureMag(0);
+					} else if (temp <= defender.getbonusArmureMag()) {
+						defender.setbonusArmureMag(defender.getbonusArmureMag() - temp);
 						temp = 0;
 					}
 				}
 				degats += temp;
 			}
-			temp_pa -= me.getArme().getPtsAction();
+			tempPa -= me.getArme().getPtsAction();
 		}
 		defender.setPtsVie(defender.getPtsVie() - degats);
 	}
@@ -116,8 +118,8 @@ public class DefaultFighter implements ClasseRPG {
 	 * Fonction qui fait se défendre le personnage
 	 */
 	public void defendre(Personnage me) {
-		me.setBonus_armure_phy(me.getBonus_armure_phy() + me.getArmure().getPtsArmurePhysique());
-		me.setBonus_armure_mag(me.getBonus_armure_mag() + me.getArmure().getPtsArmureMagique());
+		me.setbonusArmurePhy(me.getbonusArmurePhy() + me.getArmure().getPtsArmurePhysique());
+		me.setbonusArmureMag(me.getbonusArmureMag() + me.getArmure().getPtsArmureMagique());
 	}
 
 	/**
@@ -125,13 +127,16 @@ public class DefaultFighter implements ClasseRPG {
 	 */
 	public boolean isEquipable(Arme arme) {
 		boolean equipable = true;
-		
-		if (this instanceof Paladin && arme instanceof ArmePhysique)
+
+		if (this instanceof Paladin && arme instanceof ArmePhysique) {
 			equipable = false;
-		if (this instanceof Magicien && (arme instanceof ArmePhysique || arme instanceof ArmeMixte))
+		}
+		if (this instanceof Magicien && (arme instanceof ArmePhysique || arme instanceof ArmeMixte)) {
 			equipable = false;
-		if (this instanceof Barbare && (arme instanceof ArmeMagique || arme instanceof ArmeMixte))
+		}
+		if (this instanceof Barbare && (arme instanceof ArmeMagique || arme instanceof ArmeMixte)) {
 			equipable = false;
+		}
 		return equipable;
 	}
 
@@ -140,22 +145,17 @@ public class DefaultFighter implements ClasseRPG {
 	 */
 	public boolean isEquipable(Armure armure) {
 		boolean equipable = true;
-		
-		if (this instanceof Paladin && armure instanceof ArmurePhysique)
+
+		if (this instanceof Paladin && armure instanceof ArmurePhysique) {
 			equipable = false;
-		if (this instanceof Magicien && (armure instanceof ArmurePhysique || armure instanceof ArmureMixte))
+		}
+		if (this instanceof Magicien && (armure instanceof ArmurePhysique || armure instanceof ArmureMixte)) {
 			equipable = false;
-		if (this instanceof Barbare && (armure instanceof ArmureMagique || armure instanceof ArmureMixte))
+		}
+		if (this instanceof Barbare && (armure instanceof ArmureMagique || armure instanceof ArmureMixte)) {
 			equipable = false;
+		}
 		return equipable;
-	}
-	
-	public DefaultFighter() {
-		;
-	}
-	
-	public DefaultFighter(Personnage character) {
-		this.me = character;
 	}
 
 	/* (non-Javadoc)

@@ -1,10 +1,9 @@
 /**
- * 
+ *
  */
+
 package com.imie.gamerpg.entity.personnage;
 
-import com.imie.gamerpg.entity.arme.Arme;
-import com.imie.gamerpg.entity.armure.Armure;
 import com.imie.gamerpg.entity.interfaceclass.ClasseRPG;
 
 /**
@@ -12,27 +11,8 @@ import com.imie.gamerpg.entity.interfaceclass.ClasseRPG;
  *
  */
 public class Monstre extends Personnage {
-	/**
-	 * 
-	 * @param nom
-	 * @param ptsVie
-	 * @param ptsAction
-	 * @param arme
-	 * @param armure
-	 * @param classe
-	 */
-	public Monstre(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure, ClasseRPG classe) {
-		super(nom, ptsVie, ptsAction, arme, armure, classe);
-	}
-	
+
 	public Monstre(String nom, int ptsVie, int ptsAction, ClasseRPG classe) {
 		super(nom, ptsVie, ptsAction, classe);
 	}
-	
-	public Monstre(String nom, int ptsVie, int ptsAction) {
-		super(nom, ptsVie, ptsAction);
-	}
-	
-	public Monstre() {}
-
 }

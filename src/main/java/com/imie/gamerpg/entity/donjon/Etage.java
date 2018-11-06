@@ -1,6 +1,7 @@
 /**
- * 
+ *
  */
+
 package com.imie.gamerpg.entity.donjon;
 
 import java.util.ArrayList;
@@ -12,19 +13,19 @@ import com.imie.gamerpg.entity.personnage.Monstre;
  *
  */
 public class Etage {
-	private int curr_etage;
+	private int currEtage;
 	private ArrayList<Monstre> monstre;
 
+	public Etage(int nb) {
+		this.currEtage = nb;
+		monstre = new ArrayList<Monstre>();
+	}
+
 	public int getCurr_etage() {
-		return curr_etage;
+		return currEtage;
 	}
 
 	public ArrayList<Monstre> getMonstre() {
 		return monstre;
-	}
-
-	public Etage(int nb) {
-		this.curr_etage = nb;
-		monstre = new ArrayList<Monstre>();
 	}
 }

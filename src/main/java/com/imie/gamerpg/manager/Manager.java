@@ -1,6 +1,7 @@
 /**
- * 
+ *
  */
+
 package com.imie.gamerpg.manager;
 
 import java.util.ArrayList;
@@ -46,16 +47,6 @@ public class Manager {
 	private Donjon donjon;
 	private int gold;
 
-	public int getGold() {
-		return gold;
-	}
-	
-
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-	
-
 	/**
 	 * Constructeur manager
 	 */
@@ -75,8 +66,16 @@ public class Manager {
 		this.gold = 0;
 	}
 
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	private Arme get_Arme(Personnage character) {
@@ -87,41 +86,53 @@ public class Manager {
 			do {
 				System.out.println("Choisis l'arme du personnage maintenant");
 				for (int i = 0; i < armes.size(); i++) {
-					System.out.println(i + 1 + " - " + armes.get(i).getNom() + " || Dégats Physique : "
+					System.out.println(i + 1 + " - " + armes.get(i).getNom()
+							+ " || Dégats Physique : "
 							+ armes.get(i).getPtsAttaquePhysique() + " || Dégats Magique : "
-							+ armes.get(i).getPtsAttaqueMagique() + " || Points d'action : " + armes.get(i).getPtsAction());
+							+ armes.get(i).getPtsAttaqueMagique() + " || Points d'action : "
+							+ armes.get(i).getPtsAction());
 
 				}
 
 				if (ScannerProvider.getInstance().hasNextInt()) {
 					temp = ScannerProvider.getInstance().NextInt();
-					if (temp < 1 || temp > 13)
+					if (temp < 1 || temp > 13) {
 						System.out.println("Test déjà vérifié et jugé invalide, try harder !");
-				} else
-					System.out.println("T'as toujours pas compris que tu nous ferait pas planter ?");
+					}
+				} else {
+					System.out
+					.println("T'as toujours pas compris que tu nous ferait pas planter ?");
+				}
 			} while (temp < 1 || temp > 13);
 
 			// En fonction de l'arme choisie, on détermine si celle-ci est une arme
 			// physique, magique ou mixte
 			if (armes.get(temp - 1).getPtsAttaqueMagique() == 0) {
-				choixArme = new ArmePhysique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
-						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+				choixArme = new ArmePhysique(armes.get(temp - 1).getNom(),
+						armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(),
+						armes.get(temp - 1).getPtsAction());
 			} else if (armes.get(temp - 1).getPtsAttaquePhysique() == 0) {
-				choixArme = new ArmeMagique(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
-						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+				choixArme = new ArmeMagique(armes.get(temp - 1).getNom(),
+						armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(),
+						armes.get(temp - 1).getPtsAction());
 			} else {
-				choixArme = new ArmeMixte(armes.get(temp - 1).getNom(), armes.get(temp - 1).getPtsAttaquePhysique(),
-						armes.get(temp - 1).getPtsAttaqueMagique(), armes.get(temp - 1).getPtsAction());
+				choixArme = new ArmeMixte(armes.get(temp - 1).getNom(),
+						armes.get(temp - 1).getPtsAttaquePhysique(),
+						armes.get(temp - 1).getPtsAttaqueMagique(),
+						armes.get(temp - 1).getPtsAction());
 			}
-			if (!character.getClasse().isEquipable(choixArme))
-				System.out.println(
-						"L'arme choisie ne correspond pas à la classe du personnage, veuillez re-choisir une arme correspondante à la classe du personnage ");
+			if (!character.getClasse().isEquipable(choixArme)) {
+				System.out.println("L'arme choisie ne correspond pas à la classe du personnage,"
+						+ " veuillez re-choisir une arme correspondant à la classe du personnage");
+			}
 		} while (!(character.getClasse().isEquipable(choixArme)));
 		return choixArme;
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	private Armure get_Armure(Personnage character) {
@@ -133,35 +144,43 @@ public class Manager {
 				System.out.println("Last but not least, l'armure");
 
 				for (int i = 0; i < armures.size(); i++) {
-					System.out.println(i + 1 + " - " + armures.get(i).getNom() + " || Absorption Physique : "
-							+ armures.get(i).getPtsArmurePhysique() + " || Absorption Magique : "
+					System.out.println(i + 1 + " - "
+							+ armures.get(i).getNom() + " || Absorption Physique : "
+							+ armures.get(i).getPtsArmurePhysique()
+							+ " || Absorption Magique : "
 							+ armures.get(i).getPtsArmureMagique());
 				}
 
 				if (ScannerProvider.getInstance().hasNextInt()) {
 					temp = ScannerProvider.getInstance().NextInt();
-					if (temp < 1 || temp > 12)
+					if (temp < 1 || temp > 12) {
 						System.out.println("Your error is in another castle !");
-				} else
+					}
+				} else {
 					System.out.println("404 int not found");
+				}
 			} while (temp < 1 || temp > 12);
 
 			// En fonction de l'armure choisie, on détermine si celle-ci est une armure
 			// physique, magique ou mixte
 			if (armures.get(temp - 1).getPtsArmureMagique() == 0) {
 				choixArmure = new ArmurePhysique(armures.get(temp - 1).getNom(),
-						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+						armures.get(temp - 1).getPtsArmurePhysique(),
+						armures.get(temp - 1).getPtsArmureMagique());
 			} else if (armures.get(temp - 1).getPtsArmurePhysique() == 0) {
 				choixArmure = new ArmureMagique(armures.get(temp - 1).getNom(),
-						armures.get(temp - 1).getPtsArmurePhysique(), armures.get(temp - 1).getPtsArmureMagique());
+						armures.get(temp - 1).getPtsArmurePhysique(),
+						armures.get(temp - 1).getPtsArmureMagique());
 			} else {
-				choixArmure = new ArmureMixte(armures.get(temp - 1).getNom(), armures.get(temp - 1).getPtsArmurePhysique(),
+				choixArmure = new ArmureMixte(armures.get(temp - 1).getNom(),
+						armures.get(temp - 1).getPtsArmurePhysique(),
 						armures.get(temp - 1).getPtsArmureMagique());
 			}
 
-			if (!(character.getClasse().isEquipable(choixArmure)))
-				System.out.println(
-						"L'armure choisie ne correspond pas à la classe du personnage, veuillez re-choisir une armure correspondante à la classe du personnage ");
+			if (!(character.getClasse().isEquipable(choixArmure))) {
+				System.out.println("L'armure choisie ne correspond pas à la classe du personnage, "
+						+ "veuillez re-choisir une armure correspondant à la classe du personnage");
+			}
 		} while (!(character.getClasse().isEquipable(choixArmure)));
 
 		return choixArmure;
@@ -173,14 +192,15 @@ public class Manager {
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				temp = ScannerProvider.getInstance().NextInt();
-				if (temp <= 0)
+				if (temp <= 0) {
 					System.out.println("T'as du temps à perdre à donner un mauvais chiffre ?");
-				else if (temp > max) {
+				} else if (temp > max) {
 					System.out.println("Tu t'es cru malin ? BAM sanction, j'te redescends à 10.");
 					temp = max;
 				}
-			} else
+			} else {
 				System.out.println("T'es mal partit pour gagner le million toi");
+			}
 		} while (temp <= 0);
 		return temp;
 	}
@@ -205,15 +225,16 @@ public class Manager {
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				hp = ScannerProvider.getInstance().NextInt();
-				if (hp <= 0)
+				if (hp <= 0) {
 					System.out.println("C'est pas Walking Dead ici, tu peux pas créer de zombie");
-				else if (hp > 10) {
+				} else if (hp > 10) {
 					System.out.println(
 							"Bien essayé Antoine, mais c'est 10 HP max donc je set la valeur à 10 d'office ;)");
 					hp = 10;
 				}
-			} else
+			} else {
 				System.out.println("T'as été bercé trop près du mur ?");
+			}
 		} while (hp <= 0);
 		return hp;
 	}
@@ -225,15 +246,16 @@ public class Manager {
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				pa = ScannerProvider.getInstance().NextInt();
-				if (pa <= 0)
+				if (pa <= 0) {
 					System.out.println("C'est pas la jungle ici, tu peux pas créer de paresseux");
-				else if (pa > 10) {
+				} else if (pa > 10) {
 					System.out
-							.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
+					.println("Bien essayé Antoine, mais c'est 6 PA max donc je set la valeur à 6 d'office ;)");
 					pa = 6;
 				}
-			} else
+			} else {
 				System.out.println("La date de péremption de ton cerveau est dépassée ?");
+			}
 		} while (pa <= 0);
 		return pa;
 	}
@@ -248,10 +270,12 @@ public class Manager {
 		do {
 			if (ScannerProvider.getInstance().hasNextInt()) {
 				temp = ScannerProvider.getInstance().NextInt();
-				if (temp <= 0 || temp > 4)
+				if (temp <= 0 || temp > 4) {
 					System.out.println("C'est un concept intéressant, mais refusé par le développeur");
-			} else
+				}
+			} else {
 				System.out.println("ArE yOu BrAiNdEaD ? mE tOo ! Xd");
+			}
 		} while (temp <= 0 || temp > 4);
 		switch (temp) {
 		case 1:
@@ -263,14 +287,22 @@ public class Manager {
 		case 3:
 			classe = new DefaultMagicien();
 			break;
+		default:
+			break;
 		}
 		return classe;
 	}
 
+	/**
+	 * Fonction qui lance le mode histoire
+	 */
 	public void history_mode() {
 		System.out.println("Toujours en développement, on espère que ça sortira avant KH 3");
 	}
 
+	/**
+	 * Fonction qui lance le mode libre
+	 */
 	public void free_mode() {
 		int i = 0;
 
@@ -285,15 +317,16 @@ public class Manager {
 		// Création des héros
 		for (int count = 0; count < i; count++) {
 			this.heros.add(new Hero(get_char_name(), get_char_HP(), get_char_PA(), get_char_class()));
-			
+
 			// Choisir une arme
 			this.heros.get(count).setArme(get_Arme(this.heros.get(count)));
-			if (this.heros.get(count).getClasse() instanceof DefaultBarbare)
-				this.heros.get(count).setSecondary_weapon(get_Arme(this.heros.get(count)));
-			
+			if (this.heros.get(count).getClasse() instanceof DefaultBarbare) {
+				this.heros.get(count).setsecondaryWeapon(get_Arme(this.heros.get(count)));
+			}
+
 			// Choisir une armure
 			this.heros.get(count).setArmure(get_Armure(this.heros.get(count)));
-			
+
 			this.heros.get(count).getClasse().setMe(this.heros.get(count));
 		}
 		i = 0;
@@ -301,10 +334,10 @@ public class Manager {
 		// Récupération du nombre d'étages du donjon
 		System.out.println("Entre le nombre d'étages (maximum 3)");
 		i = get_int_with_max(3);
-		this.donjon.setNb_etage(i);
+		this.donjon.setNbEtage(i);
 
 		// Récupération du nombre de monstre et création des étages
-		for (int j = 0; j < donjon.getNb_etage(); j++) {
+		for (int j = 0; j < donjon.getNbEtage(); j++) {
 			this.donjon.getEtage().add(new Etage(j));
 			i = 0;
 
@@ -314,21 +347,26 @@ public class Manager {
 			// Création des monstres de l'étage
 			for (int count = 0; count < i; count++) {
 				this.donjon.getEtage().get(j).getMonstre()
-						.add(new Monstre(get_char_name(), get_char_HP(), get_char_PA(), get_char_class()));
-				
+				.add(new Monstre(get_char_name(), get_char_HP(), get_char_PA(), get_char_class()));
+
 				// Choisir une arme
-				this.donjon.getEtage().get(j).getMonstre().get(count).setArme(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
-				if (this.donjon.getEtage().get(j).getMonstre().get(count).getClasse() instanceof DefaultBarbare)
-					this.donjon.getEtage().get(j).getMonstre().get(count).setSecondary_weapon(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
-				
+				this.donjon.getEtage().get(j).getMonstre().get(count)
+				.setArme(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
+				if (this.donjon.getEtage().get(j).getMonstre().get(count).getClasse() instanceof DefaultBarbare) {
+					this.donjon.getEtage().get(j).getMonstre().get(count)
+					.setsecondaryWeapon(get_Arme(this.donjon.getEtage().get(j).getMonstre().get(count)));
+				}
+
 				// Choisir une armure
-				this.donjon.getEtage().get(j).getMonstre().get(count).setArmure(get_Armure(this.donjon.getEtage().get(j).getMonstre().get(count)));
-				
-				this.donjon.getEtage().get(j).getMonstre().get(count).getClasse().setMe(this.donjon.getEtage().get(j).getMonstre().get(count));
+				this.donjon.getEtage().get(j).getMonstre().get(count)
+				.setArmure(get_Armure(this.donjon.getEtage().get(j).getMonstre().get(count)));
+
+				this.donjon.getEtage().get(j).getMonstre().get(count).getClasse()
+				.setMe(this.donjon.getEtage().get(j).getMonstre().get(count));
 			}
-			System.out.println("Création de l'étage " + (j  + 1) + " terminé.");
+			System.out.println("Création de l'étage " + (j + 1) + " terminé.");
 		}
-		this.setGold(this.getGold() + donjon.Combat(heros));
+		this.setGold(this.getGold() + donjon.combat(heros));
 	}
 
 	/**
@@ -336,23 +374,25 @@ public class Manager {
 	 */
 	public void menu() {
 		int temp = 0;
-		boolean continue_game = true;
+		boolean continueGame = true;
 
 		System.out.println("---------- Menu du jeu ----------");
 		System.out.println("1 - Mode Histoire");
 		System.out.println("2 - Mode Libre");
 		System.out.println("3 - Quitter le jeu");
-		while (continue_game) {
-			if (ScannerProvider.getInstance().hasNextInt())
+		while (continueGame) {
+			if (ScannerProvider.getInstance().hasNextInt()) {
 				temp = ScannerProvider.getInstance().NextInt();
-			if (temp == 1)
+			}
+			if (temp == 1) {
 				history_mode();
-			else if (temp == 2)
+			} else if (temp == 2) {
 				free_mode();
-			else if (temp == 3)
-				continue_game = false;
-			else
+			} else if (temp == 3) {
+				continueGame = false;
+			} else {
 				System.out.println("Programme pas être cassé toi entrer valeur correcte BIIIIIP");
+			}
 		}
 	}
 }

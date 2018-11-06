@@ -4,12 +4,23 @@ import com.imie.gamerpg.entity.arme.Arme;
 import com.imie.gamerpg.entity.armure.Armure;
 import com.imie.gamerpg.entity.personnage.Personnage;
 
+/**
+ *
+ * @author Romain
+ *
+ */
 public interface ClasseRPG {
-	public void setMe(Personnage me);
-	public void defendre(Personnage me);
-	public String getArmorRestriction();
-	public String getWeaponRestriction();
-	public void fight(Personnage defender);
-	public boolean isEquipable(Arme arme);
-	public boolean isEquipable(Armure armure);
+	void setMe(Personnage me);
+
+	void defendre(Personnage me);
+
+	String getArmorRestriction();
+
+	String getWeaponRestriction();
+
+	void fight(Personnage defender);
+
+	boolean isEquipable(Arme arme);
+
+	boolean isEquipable(Armure armure);
 }

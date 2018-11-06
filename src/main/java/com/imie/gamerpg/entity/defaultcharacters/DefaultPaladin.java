@@ -1,6 +1,7 @@
 /**
- * 
+ *
  */
+
 package com.imie.gamerpg.entity.defaultcharacters;
 
 import com.imie.gamerpg.entity.interfaceclass.Paladin;
@@ -12,15 +13,18 @@ import com.imie.gamerpg.entity.personnage.Personnage;
  */
 public class DefaultPaladin extends DefaultFighter implements Paladin {
 
-	public DefaultPaladin(Personnage character) {
-		super(character);
-		// TODO Auto-generated constructor stub
-	}
-	
-	public void defendre(Personnage me) {
-		me.setBonus_armure_phy(me.getBonus_armure_phy() + me.getArmure().getPtsArmurePhysique() + me.getArmure().getPtsArmurePhysique() /2);
-		me.setBonus_armure_mag(me.getBonus_armure_mag() + me.getArmure().getPtsArmureMagique() + me.getArmure().getPtsArmureMagique() / 2);
-	}
-
+	/**
+	 * Constructeur par défaut
+	 */
 	public DefaultPaladin() {}
+
+	/**
+	 * Surcharge de la fonction défendre déclarée dans le DefaultFighter
+	 */
+	public void defendre(Personnage me) {
+		me.setbonusArmureMag(me.getbonusArmureMag() + me.getArmure().getPtsArmurePhysique()
+				+ me.getArmure().getPtsArmurePhysique() / 2);
+		me.setbonusArmureMag(me.getbonusArmureMag() + me.getArmure().getPtsArmureMagique()
+				+ me.getArmure().getPtsArmureMagique() / 2);
+	}
 }

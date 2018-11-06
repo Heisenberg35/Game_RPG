@@ -1,5 +1,8 @@
 package com.imie.gamerpg.entity.interfaceclass;
 
-public interface Barbare extends ClasseRPG {
-	
-}
+/**
+ *
+ * @author Romain
+ *
+ */
+public interface Barbare extends ClasseRPG {}

@@ -1,5 +1,8 @@
 package com.imie.gamerpg.entity.interfaceclass;
 
-public interface Paladin extends ClasseRPG {
-
-}
+/**
+ *
+ * @author Romain
+ *
+ */
+public interface Paladin extends ClasseRPG {}

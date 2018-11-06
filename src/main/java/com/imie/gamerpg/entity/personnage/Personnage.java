@@ -1,6 +1,7 @@
 /**
- * 
+ *
  */
+
 package com.imie.gamerpg.entity.personnage;
 
 import com.imie.gamerpg.entity.arme.Arme;
@@ -17,29 +18,42 @@ public abstract class Personnage {
 	private int ptsVie;
 	private int ptsAction;
 	private Arme arme;
-	private Arme secondary_weapon;
+	private Arme secondaryWeapon;
 	private Armure armure;
 	private ClasseRPG classe;
-	private int bonus_armure_phy;
-	private int bonus_armure_mag;
+	private int bonusArmurePhy;
+	private int bonusArmureMag;
 
-	public int getBonus_armure_phy() {
-		return bonus_armure_phy;
+	/**
+	 * Constructeur utilisé pour le Personnage
+	 * @param nom
+	 * @param ptsVie
+	 * @param ptsAction
+	 * @param classe
+	 */
+	public Personnage(String nom, int ptsVie, int ptsAction, ClasseRPG classe) {
+		this.nom = nom;
+		this.ptsVie = ptsVie;
+		this.ptsAction = ptsAction;
+		this.classe = classe;
+		this.bonusArmurePhy = 0;
+		this.bonusArmureMag = 0;
 	}
 
-
-	public void setBonus_armure_phy(int bonus_armure_phy) {
-		this.bonus_armure_phy = bonus_armure_phy;
+	public int getbonusArmurePhy() {
+		return bonusArmurePhy;
 	}
 
-
-	public int getBonus_armure_mag() {
-		return bonus_armure_mag;
+	public void setbonusArmurePhy(int bonusArmurePhy) {
+		this.bonusArmurePhy = bonusArmurePhy;
 	}
 
+	public int getbonusArmureMag() {
+		return bonusArmureMag;
+	}
 
-	public void setBonus_armure_mag(int bonus_armure_mag) {
-		this.bonus_armure_mag = bonus_armure_mag;
+	public void setbonusArmureMag(int bonusArmureMag) {
+		this.bonusArmureMag = bonusArmureMag;
 	}
 
 	/**
@@ -112,14 +126,14 @@ public abstract class Personnage {
 		this.arme = arme;
 	}
 
-	public Arme getSecondary_weapon() {
-		return secondary_weapon;
+	public Arme getsecondaryWeapon() {
+		return secondaryWeapon;
 	}
 
-	public void setSecondary_weapon(Arme secondary_weapon) {
-		this.secondary_weapon = secondary_weapon;
+	public void setsecondaryWeapon(Arme secondaryWeapon) {
+		this.secondaryWeapon = secondaryWeapon;
 	}
-	
+
 	/**
 	 * @return the armure
 	 */
@@ -135,36 +149,9 @@ public abstract class Personnage {
 	}
 
 	/**
-	 * @param nom
-	 * @param ptsVie
-	 * @param ptsAction
-	 * @param arme
-	 * @param armure
+	 * Permet de définir si le personnage est toujours en vie ou non
+	 * @return
 	 */
-	public Personnage(String nom, int ptsVie, int ptsAction, Arme arme, Armure armure, ClasseRPG classe) {
-		this.nom = nom;
-		this.ptsVie = ptsVie;
-		this.ptsAction = ptsAction;
-		this.arme = arme;
-		this.armure = armure;
-		this.classe = classe;
-	}
-
-	public Personnage(String nom, int ptsVie, int ptsAction) {
-		this.nom = nom;
-		this.ptsVie = ptsVie;
-		this.ptsAction = ptsAction;
-	}
-	
-	public Personnage(String nom, int ptsVie, int ptsAction, ClasseRPG classe) {
-		this.nom = nom;
-		this.ptsVie = ptsVie;
-		this.ptsAction = ptsAction;
-		this.classe = classe;
-		this.bonus_armure_phy = 0;
-		this.bonus_armure_mag = 0;
-	}
-	
 	public boolean isAlive() {
 		boolean isAlive = true;
 
@@ -172,9 +159,6 @@ public abstract class Personnage {
 			isAlive = false;
 		}
 		return isAlive;
-	}
-
-	public Personnage() {
 	}
 
 	/* (non-Javadoc)
