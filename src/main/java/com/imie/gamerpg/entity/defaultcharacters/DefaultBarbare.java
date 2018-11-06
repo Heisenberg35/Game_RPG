@@ -39,11 +39,13 @@ public class DefaultBarbare extends DefaultFighter implements Barbare {
 			}
 			tempPa -= me.getArme().getPtsAction();
 
-			temp = me.getSecondary_weapon().getPtsAttaquePhysique() - defender.getArmure().getPtsArmurePhysique();
+			temp = me.getSecondary_weapon().getPtsAttaquePhysique()
+					- defender.getArmure().getPtsArmurePhysique();
 			if (temp  > 0) {
 				degats += temp;
 			}
-			temp = me.getSecondary_weapon().getPtsAttaqueMagique() - defender.getArmure().getPtsArmureMagique();
+			temp = me.getSecondary_weapon().getPtsAttaqueMagique()
+					- defender.getArmure().getPtsArmureMagique();
 			if (temp > 0) {
 				degats += temp;
 			}

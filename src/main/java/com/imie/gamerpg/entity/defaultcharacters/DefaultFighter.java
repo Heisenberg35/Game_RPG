@@ -1,6 +1,7 @@
 /**
- * 
+ *
  */
+
 package com.imie.gamerpg.entity.defaultcharacters;
 
 import com.imie.gamerpg.entity.arme.Arme;
@@ -22,16 +23,21 @@ import com.imie.gamerpg.entity.personnage.Personnage;
  *
  */
 public class DefaultFighter implements ClasseRPG {
-
+/**
+ *
+ */
 	protected Personnage me;
 
 	public void setMe(Personnage me) {
 		this.me = me;
 	}
 
+	/**
+	 * Fonction qui renvoie la restriction d'armure
+	 */
 	public String getArmorRestriction() {
 		String to_return = new String();
-		
+
 		to_return = "Le personnage ne peut équiper qu'une armure ";
 		if (this instanceof Paladin)
 			to_return += "Mixte||Magique";
@@ -45,6 +51,9 @@ public class DefaultFighter implements ClasseRPG {
 		return to_return;
 	}
 
+	/**
+	 * Fonction qui renvoie la restriction d'arme
+	 */
 	public String getWeaponRestriction() {
 		String to_return = new String();
 		
@@ -61,6 +70,9 @@ public class DefaultFighter implements ClasseRPG {
 		return to_return;
 	}
 
+	/**
+	 * Fonction qui fait combattre le personnage courant contre le personnage défenseur
+	 */
 	public void fight(Personnage defender) {
 		int degats = 0;
 		int temp = 0;
@@ -100,11 +112,17 @@ public class DefaultFighter implements ClasseRPG {
 		defender.setPtsVie(defender.getPtsVie() - degats);
 	}
 
+	/**
+	 * Fonction qui fait se défendre le personnage
+	 */
 	public void defendre(Personnage me) {
 		me.setBonus_armure_phy(me.getBonus_armure_phy() + me.getArmure().getPtsArmurePhysique());
 		me.setBonus_armure_mag(me.getBonus_armure_mag() + me.getArmure().getPtsArmureMagique());
 	}
 
+	/**
+	 * Fonction qui définit si l'arme est équipable ou non
+	 */
 	public boolean isEquipable(Arme arme) {
 		boolean equipable = true;
 		
@@ -117,6 +135,9 @@ public class DefaultFighter implements ClasseRPG {
 		return equipable;
 	}
 
+	/**
+	 * Fonction qui définit si l'armure est équipable ou non
+	 */
 	public boolean isEquipable(Armure armure) {
 		boolean equipable = true;
 		
@@ -157,6 +178,4 @@ public class DefaultFighter implements ClasseRPG {
 		}
 		return str;
 	}
-	
-	
 }
