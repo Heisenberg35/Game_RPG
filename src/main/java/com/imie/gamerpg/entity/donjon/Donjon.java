@@ -4,6 +4,7 @@
 package com.imie.gamerpg.entity.donjon;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.imie.gamerpg.entity.personnage.Hero;
 import com.imie.gamerpg.entity.personnage.Monstre;
@@ -17,6 +18,7 @@ public class Donjon {
 	private ArrayList<Etage> etage;
 	private int nb_etage;
 	private String name;
+	private Random rand;
 
 	public String getName() {
 		return name;
@@ -44,6 +46,7 @@ public class Donjon {
 
 	public Donjon() {
 		this.etage = new ArrayList<Etage>();
+		this.rand = new Random();
 	}
 	
 	public void aff_fight(ArrayList<Monstre> monstre, ArrayList<Hero> heros) {
