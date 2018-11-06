@@ -16,6 +16,11 @@ public class DefaultPaladin extends DefaultFighter implements Paladin {
 		super(character);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void defendre(Personnage me) {
+		me.setBonus_armure_phy(me.getBonus_armure_phy() + me.getArmure().getPtsArmurePhysique() + me.getArmure().getPtsArmurePhysique() /2);
+		me.setBonus_armure_mag(me.getBonus_armure_mag() + me.getArmure().getPtsArmureMagique() + me.getArmure().getPtsArmureMagique() / 2);
+	}
 
 	public DefaultPaladin() {}
 }
