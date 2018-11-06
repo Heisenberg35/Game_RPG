@@ -109,4 +109,27 @@ public class DefaultFighter implements ClasseRPG {
 	public DefaultFighter(Personnage character) {
 		this.me = character;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String str = new String();
+		if (this instanceof DefaultFighter) {
+			str = "Fighter";
+		}
+		if (this instanceof DefaultBarbare) {
+			str = "Barbare";
+		}
+		if (this instanceof DefaultMagicien) {
+			str = "Magicien";
+		}
+		if (this instanceof DefaultPaladin) {
+			str = "Paladin";
+		}
+		return str;
+	}
+	
+	
 }
