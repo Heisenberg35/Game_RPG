@@ -80,8 +80,9 @@ public class Donjon {
 				System.out.print(" ");
 			}
 			if (i < monstre.size()) {
-				System.out.println("Nom : " + monstre.get(i).getNom());
+				System.out.print("Nom : " + monstre.get(i).getNom());
 			}
+			System.out.print('\n');
 
 			if (i < heros.size()) {
 				System.out.print("PVs : " + heros.get(i).getPtsVie() + " PAs : "
@@ -91,9 +92,10 @@ public class Donjon {
 				System.out.print(" ");
 			}
 			if (i < monstre.size()) {
-				System.out.println("PVs : " + monstre.get(i).getPtsVie() + " PAs : "
+				System.out.print("PVs : " + monstre.get(i).getPtsVie() + " PAs : "
 			+ monstre.get(i).getPtsAction());
 			}
+			System.out.print('\n');
 
 			if (i < heros.size()) {
 				System.out.print("Classe : " + heros.get(i).getClasse().toString());
@@ -102,8 +104,9 @@ public class Donjon {
 				System.out.print(" ");
 			}
 			if (i < monstre.size()) {
-				System.out.println("Classe : " + monstre.get(i).getClasse().toString());
+				System.out.print("Classe : " + monstre.get(i).getClasse().toString());
 			}
+			System.out.print('\n');
 
 			if (i < heros.size()) {
 				System.out.print("Arme : " + heros.get(i).getArme());
@@ -112,8 +115,9 @@ public class Donjon {
 				System.out.print(" ");
 			}
 			if (i < monstre.size()) {
-				System.out.println("Arme : " + monstre.get(i).getArme());
+				System.out.print("Arme : " + monstre.get(i).getArme());
 			}
+			System.out.print('\n');
 
 			if (i < heros.size()) {
 				System.out.print("Armure : " + heros.get(i).getArmure());
@@ -122,8 +126,9 @@ public class Donjon {
 				System.out.print(" ");
 			}
 			if (i < monstre.size()) {
-				System.out.println("Armure : " + monstre.get(i).getArmure());
+				System.out.print("Armure : " + monstre.get(i).getArmure());
 			}
+			System.out.print('\n');
 		}
 	}
 
@@ -160,7 +165,7 @@ public class Donjon {
 					userChoice = 0;
 
 					// Tour des héros
-					if (z < heros.size()) {
+					if (z < heros.size() && this.etage.get(count).getMonstre().size() > 0) {
 						System.out.println(
 								"Le héros " + heros.get(z).getNom() + " est prêt à se battre ! Que doit-il faire ?");
 						System.out.println("1 - Attaquer\n2 - Se défendre\n");
@@ -203,7 +208,7 @@ public class Donjon {
 					}
 
 					// Tour du monstre
-					if (z < this.etage.get(count).getMonstre().size()) {
+					if (z < this.etage.get(count).getMonstre().size() && heros.size() > 0) {
 						System.out.println("Le monstre " + this.etage.get(count).getMonstre().get(z).getNom()
 								+ " est prêt à se battre !");
 						userChoice = rand.nextInt(1) + 1;
