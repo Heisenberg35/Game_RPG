@@ -1304,6 +1304,10 @@
                   <generalization xmi:type="uml:Generalization" xmi:id="_rY4RkOH7EeiB2Zbjy825hA" general="_IeiEAOH6EeiB2Zbjy825hA"/>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Interface" xmi:id="_IeiEAOH6EeiB2Zbjy825hA" name="ClasseRPG" visibility="public">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_O5wE4uIDEeiB2Zbjy825hA" name="personnage" type="_IeQXMOH6EeiB2Zbjy825hA" association="_O5vd0OIDEeiB2Zbjy825hA">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O5zIMOIDEeiB2Zbjy825hA" value="1"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O5zIMeIDEeiB2Zbjy825hA" value="1"/>
+                  </ownedAttribute>
                   <ownedOperation xmi:type="uml:Operation" xmi:id="_Igo80OH6EeiB2Zbjy825hA" name="setMe" visibility="public">
                     <ownedParameter xmi:type="uml:Parameter" xmi:id="_Igpj4OH6EeiB2Zbjy825hA" name="me" type="_IeQXMOH6EeiB2Zbjy825hA"/>
                   </ownedOperation>
@@ -2621,6 +2625,15 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vShf0uH_EeiB2Zbjy825hA" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_vSo0kOH_EeiB2Zbjy825hA" name="daomanager" type="_IUv14OH6EeiB2Zbjy825hA" association="_vShf0OH_EeiB2Zbjy825hA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_O5vd0OIDEeiB2Zbjy825hA" memberEnd="_O5wE4uIDEeiB2Zbjy825hA _O5zIMuIDEeiB2Zbjy825hA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_O5wE4OIDEeiB2Zbjy825hA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_O5wE4eIDEeiB2Zbjy825hA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_O5zIMuIDEeiB2Zbjy825hA" name="classerpg" type="_IeiEAOH6EeiB2Zbjy825hA" association="_O5vd0OIDEeiB2Zbjy825hA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Z1UakOIDEeiB2Zbjy825hA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Z1YsAOIDEeiB2Zbjy825hA" value="1"/>
+      </ownedEnd>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_INhMgOH6EeiB2Zbjy825hA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_INjBsOH6EeiB2Zbjy825hA" source="http://www.eclipse.org/uml2/2.0.0/UML">
